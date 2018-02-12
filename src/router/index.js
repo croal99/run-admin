@@ -43,6 +43,11 @@ import processComponent from 'pages/checkpoint/process'
 // 关卡编辑
 import checkpointEditComponent from 'pages/checkpoint/edit'
 
+// 题库列表
+import questionListComponent from 'pages/question/list'
+// 题库编辑
+import questionEditComponent from 'pages/question/edit'
+
 Vue.use(VueRouter)
 
 //使用AMD方式加载
@@ -95,6 +100,24 @@ const routes = [{
       component: checkpointEditComponent,
       meta: {
         title: "关卡编辑",
+        auth: true
+      }
+    },
+    {
+      path: '/question/list',
+      name: 'questionList',
+      component: questionListComponent,
+      meta: {
+        title: "题库管理",
+        auth: true
+      }
+    },
+    {
+      path: '/question/edit',
+      name: 'questionEdit',
+      component: questionEditComponent,
+      meta: {
+        title: "题库编辑",
         auth: true
       }
     },

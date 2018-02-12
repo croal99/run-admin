@@ -62,21 +62,21 @@ export default {
             },
             {
               title: "题目",
-              path: "/table/sort"
+              path: "/question/list"
             }
           ]
         },
-        {
-          title: "图表管理",
-          path: "/charts",
-          icon: "fa-bar-chart-o",
-          child: [
-            {
-              title: "柱状图表",
-              path: "/charts/bar"
-            }
-          ]
-        }
+        // {
+        //   title: "图表管理",
+        //   path: "/charts",
+        //   icon: "fa-bar-chart-o",
+        //   child: [
+        //     {
+        //       title: "柱状图表",
+        //       path: "/charts/bar"
+        //     }
+        //   ]
+        // }
       ]
     };
   }

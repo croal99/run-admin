@@ -21,10 +21,19 @@ export default {
   // 初始化游戏基础配置
   set_game_config(state, config) {
     state.game_config = config;
+
+    // 关卡列表
     state.checkpoint_list = [];
     for (var key in state.game_config.checkpoint_list) {
       let checkpoint = state.game_config.checkpoint_list[key];
       state.checkpoint_list.push(checkpoint);
+    }
+
+    // 题库列表
+    state.question_list = [];
+    for (var key in state.game_config.question_list) {
+      let question = state.game_config.question_list[key];
+      state.question_list.push(question);
     }
   },
 

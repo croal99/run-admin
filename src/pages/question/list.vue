@@ -9,27 +9,25 @@
       </router-link> -->
     </panel-title>
     <div class="panel-body">
-      <el-table :data="$store.state.checkpoint_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
+      <el-table :data="$store.state.question_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
         <el-table-column type="selection" width="55">
         </el-table-column>
-        <el-table-column prop="id" label="id" width="80">
+        <el-table-column prop="id" label="id" width="70">
         </el-table-column>
-        <el-table-column prop="name" label="name" width="200">
+        <el-table-column prop="type_name" label="type" width="120">
         </el-table-column>
-        <el-table-column prop="memo" label="memo">
+        <el-table-column prop="memo" label="memo" width="150">
         </el-table-column>
-        <el-table-column label="image" width="240">
-          <template slot-scope="scope">
-            <img :src="scope.row.image" width="240">
-          </template>
+        <el-table-column prop="content" label="content">
         </el-table-column>
-        <el-table-column label="操作" width="100">
+        <!-- <el-table-column prop="items" label="items" width="200">
+        </el-table-column>
+        <el-table-column prop="answer" label="answer" width="200">
+        </el-table-column> -->
+        <el-table-column label="操作" width="120">
           <template scope="props">
-            <router-link :to="{name: 'checkpointEdit', params: {id: props.row.id}}" tag="span">
-              <el-button type="success" size="mini" icon="edit">编辑</el-button>
-            </router-link>
-            <router-link :to="{name: 'checkpointProcess', params: {id: props.row.id}}" tag="span">
-              <el-button type="info" size="mini" icon="edit">任务</el-button>
+            <router-link :to="{name: 'questionEdit', params: {id: props.row.id}}" tag="span">
+              <el-button type="success" size="small" icon="edit">编辑</el-button>
             </router-link>
             <!-- <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row)">删除</el-button> -->
           </template>
@@ -71,12 +69,8 @@ export default {
       this.get_table_data();
     },
     //获取数据
-    get_table_data() {},
-    //批量选择
-    on_batch_select(val) {
-      this.batch_select = val;
+    get_table_data() {
     },
-    on_batch_del() {}
   }
 };
 </script>
