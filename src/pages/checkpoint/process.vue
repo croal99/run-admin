@@ -29,7 +29,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$route);
     let id = this.$route.params.id;
     this.checkpoint = this.$store.state.game_config.checkpoint_list[id];
 
@@ -219,6 +218,9 @@ export default {
         return { question: question, children: [] };
       }
     }
+  },
+  components: {
+    panelTitle
   }
 };
 </script>

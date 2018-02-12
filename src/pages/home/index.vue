@@ -2,21 +2,112 @@
   <div class="panel">
     <panel-title :title="$route.meta.title"></panel-title>
     <div class="panel-body">
-      {{msg}}
+      <el-form :inline="true">
+        <el-form-item label="游戏名称">
+          <el-select v-model="$store.state.game_code" placeholder="游戏">
+            <el-option
+              v-for="game in game_list"
+              :key="game.value"
+              :label="game.label"
+              :value="game.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" size="small" @click="set_game">设置</el-button>
+        </el-form-item>
+      </el-form>
+      <el-table :data="config_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
+        <el-table-column prop="mtime" label="时间">
+        </el-table-column>
+        <el-table-column prop="filename" label="文件名" width="200">
+        </el-table-column>
+        <el-table-column label="操作" width="200">
+          <template scope="props">
+            <el-button type="success" size="mini" icon="edit" @click="load_config(props.row)">加载历史</el-button>
+            <!-- <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row)">删除</el-button> -->
+          </template>
+        </el-table-column>
+      </el-table>
     </div>
   </div>
 </template>
 <script type="text/javascript">
-  import {panelTitle} from 'components'
+import { panelTitle } from "components";
 
-  export default{
-    data(){
-      return {
-        msg: 'home page'
-      }
-    },
-    components: {
-      panelTitle
+export default {
+  data() {
+    return {
+      // 游戏列表
+      game_list: [
+        {
+          value: "zjh",
+          label: "志交会"
+        },
+        {
+          value: "1234",
+          label: "消失的宝藏"
+        }
+      ],
+      config_list: [], // 游戏配置
+      load_data: false // 请求时的loading效果
+    };
+  },
+  created() {
+    if (this.$store.state.game_code) {
+      this.load_data = true;
+      this.get_config_list();
     }
+  },
+  methods: {
+    // 加载游戏历史
+    load_config(config) {
+      this.load_data = true;
+      this.$fetch.api_game_config
+        .load_config({
+          fullname: config.fullname
+        })
+        .then(({ data }) => {
+          this.$message.success("加载历史数据成功");
+          this.$store.commit("set_game_config", data);
+          this.load_data = false;
+        });
+    },
+
+    // 获取游戏配置列表
+    get_config_list() {
+      this.$fetch.api_game_config
+        .config_list({
+          code: this.$store.state.game_code
+        })
+        .then(({ data }) => {
+          this.config_list = data;
+          this.load_data = false;
+        });
+    },
+
+    // 设置游戏数据
+    set_game() {
+      this.load_data = true;
+      this.$fetch.api_game_config
+        .get_config({
+          code: this.$store.state.game_code
+        })
+        .then(({ data }) => {
+          this.$message.success("加载成功");
+          this.$store.commit("set_game_config", data);
+          this.get_config_list();
+        })
+        .catch(() => {
+          this.$notify.info({
+            title: "提示",
+            message: "发生错误了"
+          });
+        });
+    }
+  },
+  components: {
+    panelTitle
   }
+};
 </script>

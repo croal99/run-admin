@@ -48,6 +48,7 @@ npm run build
 │   │   ├── checkpoint               // 关卡管理
 │   │   │   ├── list.vue             // 关卡列表
 │   │   │   ├── process.vue          // 关卡中的任务分配情况
+│   │   │   ├── edit.vue             // 关卡信息编辑
 │   ├── plugins                      // 各种插件
 │   ├── router                       // 路由配置及map
 │   ├── store                        // Vuex 状态管理器

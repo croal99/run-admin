@@ -12,10 +12,36 @@ import fetch from 'common/fetch'
 import {port_game_config} from 'common/port_uri'
 
 // 获取游戏基础配置
-export function baseinfo(data) {
-  console.log('baseinfo', data);
+export function get_config(data) {
   return fetch({
-    url: port_game_config.config,
+    url: port_game_config.get_config,
+    method: 'post',
+    data
+  })
+}
+
+// 保存游戏基础配置
+export function set_config(data) {
+  return fetch({
+    url: port_game_config.set_config,
+    method: 'post',
+    data
+  })
+}
+
+// 获取游戏历史配置
+export function config_list(data) {
+  return fetch({
+    url: port_game_config.config_list,
+    method: 'post',
+    data
+  })
+}
+
+// 加载游戏历史配置
+export function load_config(data) {
+  return fetch({
+    url: port_game_config.load_config,
     method: 'post',
     data
   })

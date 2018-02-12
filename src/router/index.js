@@ -38,8 +38,10 @@ import barChartsComponent from 'pages/charts/bar'
 
 // 关卡列表
 import checkpointListComponent from 'pages/checkpoint/list'
-
+// 关卡任务安排
 import processComponent from 'pages/checkpoint/process'
+// 关卡编辑
+import checkpointEditComponent from 'pages/checkpoint/edit'
 
 Vue.use(VueRouter)
 
@@ -71,7 +73,7 @@ const routes = [{
     },
     {
       path: '/checkpoint/list',
-      name: 'checkpoint_list',
+      name: 'checkpointList',
       component: checkpointListComponent,
       meta: {
         title: "关卡管理",
@@ -84,6 +86,15 @@ const routes = [{
       component: processComponent,
       meta: {
         title: "任务进程",
+        auth: true
+      }
+    },
+    {
+      path: '/checkpoint/edit/:id',
+      name: 'checkpointEdit',
+      component: checkpointEditComponent,
+      meta: {
+        title: "关卡编辑",
         auth: true
       }
     },
