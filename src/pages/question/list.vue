@@ -14,7 +14,10 @@
         </el-table-column>
         <el-table-column prop="id" label="id" width="70">
         </el-table-column>
-        <el-table-column prop="type_name" label="type" width="120">
+        <el-table-column label="type" width="120">
+          <template scope="props">
+            {{type_name[props.row.type]}}
+          </template>
         </el-table-column>
         <el-table-column prop="memo" label="memo" width="150">
         </el-table-column>
@@ -48,6 +51,8 @@ import { panelTitle, bottomToolBar } from "components";
 export default {
   data() {
     return {
+      // 类型定义
+      type_name:['分类目录','1','2','上传照片','4','普通道具','单选/多选题','多人摇一摇','8','任务书','10','填空题','晋级书',],
       //请求时的loading效果
       load_data: false,
       //批量选择数组

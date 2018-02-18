@@ -16,6 +16,9 @@
         <el-form-item>
           <el-button type="primary" size="small" @click="set_game">设置</el-button>
         </el-form-item>
+        <el-form-item>
+          <el-button type="success" size="small" @click="save_game">保存当前设置</el-button>
+        </el-form-item>
       </el-form>
       <el-table :data="config_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
         <el-table-column prop="mtime" label="时间">
@@ -82,6 +85,20 @@ export default {
         })
         .then(({ data }) => {
           this.config_list = data;
+          this.load_data = false;
+        });
+    },
+
+    // 保存游戏数据
+    save_game() {
+      this.load_message = "保存数据";
+      this.load_data = true;
+      this.$fetch.api_game_config
+        .set_config(this.$store.state.game_config)
+        .then(({ data }) => {
+          this.set_game();
+        })
+        .catch(() => {
           this.load_data = false;
         });
     },

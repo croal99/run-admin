@@ -5,6 +5,9 @@
       <el-row>
         <el-col :span="16">
           <el-form :model="checkpoint" :rules="rules" label-width="150px">
+            <el-form-item>
+              <el-button @click="$router.back()">返回</el-button>
+            </el-form-item>
             <el-form-item label="名称（name）:" prop="name">
               <el-input v-model="checkpoint.name" placeholder="关卡名称" style="width: 250px;"></el-input>
             </el-form-item>
@@ -28,8 +31,7 @@
               </el-upload>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="on_submit_form" :loading="on_submit_loading">保存</el-button>
-              <el-button @click="$router.back()">取消</el-button>
+              <el-button @click="$router.back()">返回</el-button>
             </el-form-item>
           </el-form>
         </el-col>
@@ -90,20 +92,6 @@ export default {
       this.load_data = true;
       return isJPG && isLt2M;
     },
-
-    //提交
-    on_submit_form() {
-      this.load_message = "保存数据";
-      this.load_data = true;
-      this.$fetch.api_game_config
-        .set_config(this.$store.state.game_config)
-        .then(({ data }) => {
-          this.load_data = false;
-        })
-        .catch(() => {
-          this.load_data = false;
-        });
-    }
   },
   components: {
     panelTitle

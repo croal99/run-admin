@@ -5,6 +5,9 @@
       <el-row>
         <el-col :span="16">
           <el-form :model="question" :rules="rules" label-width="150px">
+            <el-form-item>
+              <el-button @click="$router.back()">返回</el-button>
+            </el-form-item>
             <el-form-item label="类型（type）:" prop="type">
               <el-select v-model="question.type" placeholder="游戏">
                 <el-option v-for="question_type in question_type_list" :key="question_type.value" :label="question_type.label" :value="question_type.value">
@@ -22,6 +25,9 @@
             </el-form-item>
             <el-form-item label="答案（answer）:" prop="answer">
               <el-input v-model="question.answer" placeholder="题目答案" style="width: 100%;"></el-input>
+            </el-form-item>
+            <el-form-item label="得分（mark）:" prop="mark">
+              <el-rate v-model="question.mark" show-score score-template="{value}" text-color="#ff9900"></el-rate>
             </el-form-item>
             <el-form-item label="正确分支（true_id）:" prop="true_id">
               <el-select v-model="question.true_id" placeholder="正确分支">
