@@ -4,9 +4,9 @@
       <el-button @click.stop="on_refresh" size="small">
         <i class="fa fa-refresh"></i>
       </el-button>
-      <!-- <router-link :to="{name: 'tableAdd'}" tag="span">
+      <router-link :to="{name: 'checkpointAdd'}" tag="span">
         <el-button type="primary" icon="plus" size="small">添加数据</el-button>
-      </router-link> -->
+      </router-link>
     </panel-title>
     <div class="panel-body">
       <el-table :data="$store.state.checkpoint_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
@@ -31,7 +31,7 @@
             <router-link :to="{name: 'checkpointProcess', params: {id: props.row.id}}" tag="span">
               <el-button type="info" size="mini" icon="edit">任务</el-button>
             </router-link>
-            <!-- <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row)">删除</el-button> -->
+            <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -66,6 +66,17 @@ export default {
     // }
   },
   methods: {
+    delete_data(checkpoint) {
+      this.$confirm("此操作将删除该数据, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.$store.commit('del_checkpoint', checkpoint.id);
+        })
+        .catch(() => {});
+    },
     //刷新
     on_refresh() {
       this.get_table_data();

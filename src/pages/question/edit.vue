@@ -105,10 +105,31 @@ export default {
   },
   mounted() {},
   created() {
-    let id = this.$route.params.id;
-    this.question = this.$store.state.game_config.question_list[id];
+    if (this.$route.params.id) {
+      this.get_data(this.$route.params.id);
+    } else {
+      var question = {
+        id: "9999",
+        type: "9",
+        code: "96fc5132fd9ced272f5d1d1a784bbc18",
+        memo: "新题目",
+        content: "题目内容",
+        items: "选项",
+        answer: "答案",
+        mark: "0",
+        true_id: "0",
+        false_id: "0",
+      };
+      this.$store.commit('add_question', question);
+      this.get_data(question.id);
+    }
   },
   methods: {
+    get_data(id) {
+      console.log("get_data");
+      this.question = this.$store.state.game_config.question_list[id];
+    },
+    
     on_progress(res, file) {
       this.load_message = "上传中：" + file.percentage.toFixed(2) + "%";
     },

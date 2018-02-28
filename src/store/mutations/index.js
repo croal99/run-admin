@@ -37,6 +37,68 @@ export default {
     }
   },
 
+  // 添加关卡
+  add_checkpoint(state, checkpoint) {
+    // 查找最大ID号
+    let id = 0;
+    for (var key in state.game_config.checkpoint_list) {
+      let temp_data = state.game_config.checkpoint_list[key];
+      if (id < temp_data.id) {
+        id = temp_data.id;
+      }
+    }
+
+    // 修改ID号，添加到配置
+    id++;
+    checkpoint.id = id;
+    state.game_config.checkpoint_list[id] = checkpoint;
+    state.checkpoint_list.push(checkpoint);
+  },
+
+  // 删除关卡
+  del_checkpoint(state, id) {
+    // 删除配置信息
+    delete state.game_config.checkpoint_list[id];
+
+    // 重新创建关卡列表（用于显示）
+    state.checkpoint_list = [];
+    for (var key in state.game_config.checkpoint_list) {
+      let checkpoint = state.game_config.checkpoint_list[key];
+      state.checkpoint_list.push(checkpoint);
+    }
+  },
+
+  // 添加题目
+  add_question(state, question) {
+    // 查找最大ID号
+    let id = 0;
+    for (var key in state.game_config.question_list) {
+      let temp_data = state.game_config.question_list[key];
+      if (id < temp_data.id) {
+        id = temp_data.id;
+      }
+    }
+
+    // 修改ID号，添加到配置
+    id++;
+    question.id = id;
+    state.game_config.question_list[id] = question;
+    state.question_list.push(question);
+  },
+
+  // 删除关卡
+  del_question(state, id) {
+    // 删除配置信息
+    delete state.game_config.question_list[id];
+
+    // 重新创建题库列表（用于显示）
+    state.question_list = [];
+    for (var key in state.game_config.question_list) {
+      let question = state.game_config.question_list[key];
+      state.question_list.push(question);
+    }
+  },
+
   // 设置用户信息和是否登录
   [type.SET_USER_INFO](state, userinfo) {
     state.user_info = userinfo || {}

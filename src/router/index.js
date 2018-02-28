@@ -104,6 +104,15 @@ const routes = [{
       }
     },
     {
+      path: '/checkpoint/add',
+      name: 'checkpointAdd',
+      component: checkpointEditComponent,
+      meta: {
+        title: "添加关卡",
+        auth: true
+      }
+    },
+    {
       path: '/question/list',
       name: 'questionList',
       component: questionListComponent,
@@ -118,6 +127,15 @@ const routes = [{
       component: questionEditComponent,
       meta: {
         title: "题库编辑",
+        auth: true
+      }
+    },
+    {
+      path: '/question/add',
+      name: 'questionAdd',
+      component: questionEditComponent,
+      meta: {
+        title: "添加题库",
         auth: true
       }
     },
