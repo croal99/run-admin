@@ -66,6 +66,17 @@ export default {
             }
           ]
         },
+        {
+          title: "多媒體管理",
+          path: "/media",
+          icon: "fa-area-chart",
+          child: [
+            {
+              title: "圖片管理",
+              path: "/media/picture/list"
+            },
+          ]
+        },
         // {
         //   title: "图表管理",
         //   path: "/charts",

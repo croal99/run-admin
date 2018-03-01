@@ -52,6 +52,8 @@ npm run build
 │   │   ├── question                 // 题库管理
 │   │   │   ├── list.vue             // 题库列表
 │   │   │   ├── edit.vue             // 题库信息编辑
+│   │   ├── media                    // 多媒體管理
+│   │   │   ├── picture.vue          // 圖片管理
 │   ├── plugins                      // 各种插件
 │   ├── router                       // 路由配置及map
 │   ├── store                        // Vuex 状态管理器

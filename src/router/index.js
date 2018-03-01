@@ -48,6 +48,10 @@ import questionListComponent from 'pages/question/list'
 // 题库编辑
 import questionEditComponent from 'pages/question/edit'
 
+// 圖片管理
+import pictureListComponent from 'pages/media/picture/list'
+import pictureEditComponent from 'pages/media/picture/edit'
+
 Vue.use(VueRouter)
 
 //使用AMD方式加载
@@ -136,6 +140,24 @@ const routes = [{
       component: questionEditComponent,
       meta: {
         title: "添加题库",
+        auth: true
+      }
+    },
+    {
+      path: '/media/picture/list',
+      name: 'picture',
+      component: pictureListComponent,
+      meta: {
+        title: "圖片列表",
+        auth: true
+      }
+    },
+    {
+      path: '/media/picture/edit',
+      name: 'picture',
+      component: pictureEditComponent,
+      meta: {
+        title: "圖片編輯",
         auth: true
       }
     },
