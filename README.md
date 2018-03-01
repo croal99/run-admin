@@ -72,6 +72,24 @@ npm run build
 ├── package.json                     // 项目配置文件
 </pre>
 
+# 关卡（Checkpoint）字段定义
+|名称| 类型 | 说明
+|---|---|---|
+|id|int|编号|
+|status|int|关卡状态 <br> 0--未开启 <br> 1--选中目标 <br> 2--到达位置 <br> 3--完成（成功） 4--完成（失败）|
+|code|char|编码（用于扫一扫，需要保证不重复）|
+|name|char|名称|
+|memo|char|关卡说明（HTML）|
+|lng|char|经度|
+|lat|char|纬度|
+|image0|char|状态图|
+|image1|char|状态图|
+|image2|char|状态图|
+|image3|char|状态图|
+|image4|char|状态图|
+|question|int|题目编号|
+|show|bool|是否显示|
+
 
 # Question的字段定义
 |编号| 类型 | memo| content| items|answer|mark|说明|
