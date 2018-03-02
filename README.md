@@ -72,33 +72,49 @@ npm run build
 ├── package.json                     // 项目配置文件
 </pre>
 
-# 关卡（Checkpoint）字段定义
+# 关卡（Checkpoint）
 |名称| 类型 | 说明
 |---|---|---|
 |id|int|编号|
 |status|int|关卡状态 <br> 0--未开启 <br> 1--选中目标 <br> 2--到达位置 <br> 3--完成（成功） 4--完成（失败）|
+|show|bool|是否显示（晋级书控制该字段）|
 |code|char|编码（用于扫一扫，需要保证不重复）|
-|name|char|名称|
-|content|char|关卡说明（HTML）|
+|memo|char|说明（内部使用）|
+|name|char|名称（用于任务列表页面显示）|
+|content|char|关卡内容（HTML，进入线索显示页面后渲染）|
 |lng|char|经度|
 |lat|char|纬度|
-|range|char|误差范围|
+|range|int|误差范围（0-使用系统配置  >0单独配置）|
 |method|int|触发方法 <br> 0--摇一摇 <br> 1--扫一扫|
 |image0|char|状态图|
 |image1|char|状态图|
 |image2|char|状态图|
 |image3|char|状态图|
 |image4|char|状态图|
+|css|char|css属性|
 |question|int|题目编号|
-|show|bool|是否显示|
 
+# 题目（Question）
+|名称| 类型 | 说明
+|---|---|---|
+|id|int|编号|
+|type|int|题目类型，详细说明见下表|
+|code|char|编码（用于扫一扫，需要保证不重复）|
+|name|char|名称|
+|content|char|关卡说明（HTML）|
+|items|char|详细说明见下表|
+|answer|char|详细说明见下表|
+|mark|char|详细说明见下表|
+|true_id|int|回答正确后跳转题目编号（0--无跳转）|
+|false_id|int|回答错误后跳转题目编号（0--无跳转）|
+|child|array|下级题目（如果有下级题目，才会出现该字段。用于内部流程）|
 
-# Question的字段定义
+# type定义
 |编号| 类型 | name| content| items|answer|mark|说明|
 |---|---|---|---|---|---|---|---|
 |0 | 分类目录 | 名称 | 说明|题目数量（默认1）|||不显示，随机抽取
 |3 | 上传照片 | 题目名称 | 题目说明||| 得分|
-|5 | 普通道具 | 道具名称 | 道具说明|道具图片|道具编码|得分|不显示，直接获取
+|5 | 普通道具 | 道具名称 | 道具说明|道具图片|道具编码|道具数量|不显示，直接获取
 |6 | 单选/多选题 | 题目名称 | 题目说明| 选项（&lt;br&gt;分割）| 答案（,分割） |得分
 |7 | 多人摇一摇| 题目名称 | 题目说明| | 通关计数 |得分
 |9 | 任务书| 名称 | HTML |||得分
