@@ -9,18 +9,17 @@
       </router-link>
     </panel-title>
     <div class="panel-body">
-      <el-table :data="$store.state.question_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
-        <el-table-column prop="圖片" label="圖片" width="300">
-        </el-table-column>
-        <el-table-column prop="簡介" label="簡介">
-        </el-table-column>
-        <el-table-column label="操作" width="120">
-          <template scope="props">
-            <router-link :to="{name: 'questionEdit', params: {id: props.row.id}}" tag="span">
-              <el-button type="success" size="mini" icon="edit">编辑</el-button>
-            </router-link>
-            <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row)">删除</el-button>
+      <el-table :data="picture_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
+        <!-- <el-table-column prop="filename" label="文件名" width="200">
+        </el-table-column> -->
+        <el-table-column label="image" width="240">
+          <template slot-scope="scope">
+            <img :src="scope.row.url" width="240">
           </template>
+        </el-table-column>
+        <el-table-column prop="mtime" label="时间" width="200">
+        </el-table-column>
+        <el-table-column prop="url" label="URL">
         </el-table-column>
       </el-table>
       <bottom-tool-bar>
@@ -38,26 +37,9 @@ import { panelTitle, bottomToolBar } from "components";
 export default {
   data() {
     return {
-      // 类型定义
-      type_name: [
-        "分类目录",
-        "1",
-        "2",
-        "上传照片",
-        "4",
-        "普通道具",
-        "单选/多选题",
-        "多人摇一摇",
-        "8",
-        "任务书",
-        "10",
-        "填空题",
-        "晋级书"
-      ],
-      //请求时的loading效果
-      load_data: false,
-      //批量选择数组
-      batch_select: []
+      picture_list: [], // 图片文件列表
+      load_data: false, // 请求时的loading效果
+      batch_select: [] // 批量选择数组
     };
   },
   components: {
@@ -65,9 +47,8 @@ export default {
     bottomToolBar
   },
   created() {
-    // if (this.$store.state.game_code) {
-    //   this.get_table_data();
-    // }
+    this.load_data = true;
+    this.get_picture_list();
   },
   methods: {
     delete_data(question) {
@@ -77,17 +58,25 @@ export default {
         type: "warning"
       })
         .then(() => {
-          this.$store.commit("del_question", question.id);
+          // this.$store.commit("del_question", question.id);
         })
         .catch(() => {});
     },
 
     //刷新
     on_refresh() {
-      this.get_table_data();
+      this.get_picture_list();
     },
-    //获取数据
-    get_table_data() {}
+
+    // 获取文件列表
+    get_picture_list() {
+      this.$fetch.api_media
+        .picture_list()
+        .then(({ data }) => {
+          this.picture_list = data;
+          this.load_data = false;
+        });
+    }
   }
 };
 </script>

@@ -13,12 +13,14 @@ import * as api_file from './file'
 import * as api_table from './table'
 import * as api_user from './user'
 import * as api_game_config from './game_config'
+import * as api_media from './media'
 
 const apiObj = {
   api_file,
   api_table,
   api_user,
-  api_game_config
+  api_game_config,
+  api_media
 }
 
 const install = function (Vue) {

@@ -30,14 +30,18 @@ npm run build
 │   ├── index.js                     // 本地配置文件，采用proxyTable解决跨域
 ├── src                              // 生产目录
 │   ├── api                          // *与后端进行通信的接口定义
+│   │   ├── index.js                 // 接口定义（统一加载）
 │   │   ├── game_config.js           // 游戏配置接口
+│   │   ├── media.js                 // 媒体文件管理接口
 │   ├── assets                       // 一些资源文件
 │   ├── common                       // 通用文件、如工具类、状态码
 │   │   ├── config                   // 通信配置
 │   │   │   ├── index.js             // server_base_url，解决跨域的统一配置
 │   │   ├── fetch                    // HTTP通信对象（axios）
 │   │   ├── port_uri                 // 后端uri
+│   │   │   ├── index.js             // 接口uri（统一加载）
 │   │   │   ├── game_config.js       // 游戏配置接口uri
+│   │   │   ├── media.js             // 媒体文件管理接口uri
 │   │   ├── storage                  // 本地存储接口
 │   │   ├── tools                    // 一些转换工具
 │   ├── components                   // 各种组件
@@ -53,7 +57,8 @@ npm run build
 │   │   │   ├── list.vue             // 题库列表
 │   │   │   ├── edit.vue             // 题库信息编辑
 │   │   ├── media                    // 多媒體管理
-│   │   │   ├── picture.vue          // 圖片管理
+│   │   │   ├── picture              // 圖片
+│   │   │   │   ├── list.vue         // 圖片管理
 │   ├── plugins                      // 各种插件
 │   ├── router                       // 路由配置及map
 │   ├── store                        // Vuex 状态管理器

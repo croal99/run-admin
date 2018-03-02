@@ -21,13 +21,15 @@
         </el-form-item>
       </el-form>
       <el-table :data="config_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
-        <el-table-column prop="mtime" label="时间">
-        </el-table-column>
         <el-table-column prop="filename" label="文件名" width="200">
+        </el-table-column>
+        <el-table-column prop="memo" label="说明" width="250">
+        </el-table-column>
+        <el-table-column prop="mtime" label="时间">
         </el-table-column>
         <el-table-column label="操作" width="200">
           <template scope="props">
-            <el-button type="success" size="mini" icon="edit" @click="load_config(props.row)">加载历史</el-button>
+            <el-button type="success" size="mini" icon="edit" @click="load_config(props.row)">加载</el-button>
             <!-- <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row)">删除</el-button> -->
           </template>
         </el-table-column>
