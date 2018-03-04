@@ -14,10 +14,10 @@
                 </el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="说明（memo）:" prop="memo">
-              <el-input v-model="question.memo" placeholder="题目说明" style="width: 100%;"></el-input>
+            <el-form-item label="名称（name）:" prop="name">
+              <el-input v-model="question.name" placeholder="题目名称" style="width: 100%;"></el-input>
             </el-form-item>
-            <el-form-item label="说明（content）:" prop="content">
+            <el-form-item label="题目内容（content）:" prop="content">
               <el-input v-model="question.content" placeholder="题目内容" type="textarea" :rows="8" style="width: 100%;"></el-input>
             </el-form-item>
             <el-form-item label="选项（items）:" prop="items">
@@ -27,19 +27,20 @@
               <el-input v-model="question.answer" placeholder="题目答案" style="width: 100%;"></el-input>
             </el-form-item>
             <el-form-item label="得分（mark）:" prop="mark">
-              <el-rate v-model="question.mark" show-score score-template="{value}" text-color="#ff9900"></el-rate>
+              <el-input v-model="question.mark" placeholder="分数/数量" style="width: 100%;"></el-input>
+              <!-- <el-rate v-model="question.mark" show-score score-template="{value}" text-color="#ff9900"></el-rate> -->
             </el-form-item>
             <el-form-item label="正确分支（true_id）:" prop="true_id">
               <el-select v-model="question.true_id" placeholder="正确分支">
                 <el-option label="(0)-结束" value="0"></el-option>
-                <el-option v-for="question in $store.state.question_list" :key="question.id" :label="'('+question.id+')-'+question.memo" :value="question.id">
+                <el-option v-for="question in $store.state.question_list" :key="question.id" :label="'('+question.id+')-'+question.name" :value="question.id">
                 </el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="错误分支（true_id）:" prop="false_id">
               <el-select v-model="question.false_id" placeholder="错误分支">
                 <el-option label="(0)-结束" value="0"></el-option>
-                <el-option v-for="question in $store.state.question_list" :key="question.id" :label="'('+question.id+')-'+question.memo" :value="question.id">
+                <el-option v-for="question in $store.state.question_list" :key="question.id" :label="'('+question.id+')-'+question.name" :value="question.id">
                 </el-option>
               </el-select>
             </el-form-item>

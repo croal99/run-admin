@@ -168,7 +168,7 @@ export default {
           break;
       }
 
-      return question_name + "(" + question.id + ")\r\n" + question.memo;
+      return question_name + "(" + question.id + ")\r\n" + question.name;
     },
 
     // 递归查询题目关系

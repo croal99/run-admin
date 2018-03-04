@@ -14,19 +14,15 @@
         </el-table-column>
         <el-table-column prop="id" label="id" width="70">
         </el-table-column>
-        <el-table-column label="type" width="120">
+        <el-table-column prop="name" label="name" width="150">
+        </el-table-column>
+        <!-- <el-table-column label="type" width="120">
           <template scope="props">
             {{type_name[props.row.type]}}
           </template>
-        </el-table-column>
-        <el-table-column prop="memo" label="memo" width="150">
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column prop="content" label="content">
         </el-table-column>
-        <!-- <el-table-column prop="items" label="items" width="200">
-        </el-table-column>
-        <el-table-column prop="answer" label="answer" width="200">
-        </el-table-column> -->
         <el-table-column label="操作" width="120">
           <template scope="props">
             <router-link :to="{name: 'questionEdit', params: {id: props.row.id}}" tag="span">
