@@ -104,9 +104,9 @@ npm run build
 |---|---|---|
 |id|int|编号|
 |type|int|题目类型，详细说明见下表|
-|code|char|编码（用于扫一扫，需要保证不重复）|
+|code|char|编码（不重复）|
 |name|char|名称|
-|content|char|关卡说明（HTML）|
+|content|char|说明（HTML）|
 |items|char|详细说明见下表|
 |answer|char|详细说明见下表|
 |mark|char|详细说明见下表|
