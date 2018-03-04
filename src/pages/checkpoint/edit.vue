@@ -8,14 +8,33 @@
             <el-form-item>
               <el-button @click="$router.back()">返回</el-button>
             </el-form-item>
-            <el-form-item label="编号（id）:" prop="id">
-              <el-input v-model="checkpoint.id" placeholder="编号" style="width: 120px;"></el-input>
+            <el-form-item label="说明（memo）:" prop="memo">
+              <el-input v-model="checkpoint.memo" placeholder="关卡说明" style="width: 100%;"></el-input>
+            </el-form-item>
+            <el-form-item label="是否显示（show）:" prop="show">
+              <el-switch v-model="checkpoint.show" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+            </el-form-item>
+            <el-form-item label="状态（status）:" prop="status">
+              <el-radio-group v-model="checkpoint.status" style="width: 100%;">
+                <el-radio :label="0">未开启</el-radio>
+                <el-radio :label="1">选中目标</el-radio>
+                <el-radio :label="2">到达位置</el-radio>
+                <el-radio :label="3">完成（成功）</el-radio>
+                <el-radio :label="4">完成（失败）</el-radio>
+              </el-radio-group>
+            </el-form-item>
+            <el-form-item label="触发方式（method）:" prop="method">
+              <el-radio-group v-model="checkpoint.method">
+                <el-radio :label="0">系统设置</el-radio>
+                <el-radio :label="1">摇一摇</el-radio>
+                <el-radio :label="2">扫一扫</el-radio>
+              </el-radio-group>
             </el-form-item>
             <el-form-item label="名称（name）:" prop="name">
               <el-input v-model="checkpoint.name" placeholder="关卡名称" style="width: 250px;"></el-input>
             </el-form-item>
-            <el-form-item label="说明（memo）:" prop="memo">
-              <el-input v-model="checkpoint.memo" placeholder="关卡说明" type="textarea" :rows="8" style="width: 100%;"></el-input>
+            <el-form-item label="内容（content）:" prop="content">
+              <el-input v-model="checkpoint.content" placeholder="内容" type="textarea" :rows="8" style="width: 100%;"></el-input>
             </el-form-item>
             <el-form-item label="题目(question):" prop="question">
               <el-select v-model="checkpoint.question" placeholder="题目" style="width: 250px;">
@@ -33,42 +52,55 @@
             <el-form-item label="误差范围（range）:" prop="range">
               <el-input v-model="checkpoint.range" placeholder="误差范围" style="width: 250px;"></el-input>
             </el-form-item>
-            <el-form-item label="线索图（image）:" prop="image">
-              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
-                :data="image_config"
-                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image_ok"
-                :before-upload="beforeAvatarUpload">
-                <img v-if="checkpoint.image" :src="checkpoint.image" class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-              </el-upload>
-            </el-form-item>
-            <el-form-item label="缩略图（thumb）:" prop="thumb">
+            <el-form-item label="状态图0（image0）:" prop="image0">
               <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
                 :data="thumb_config"
-                :show-file-list="false" :on-progress="on_progress" :on-success="upload_thumb_ok"
+                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image0_ok"
                 :before-upload="beforeAvatarUpload">
-                <img v-if="checkpoint.thumb" :src="checkpoint.thumb" class="avatar">
+                <img v-if="checkpoint.image0" :src="checkpoint.image0" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-form-item>
-            <el-form-item label="正确反馈（image_true）:" prop="image_true">
+            <el-form-item label="状态图1（image1）:" prop="image1">
               <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
-                :data="image_config"
-                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image_true_ok"
+                :data="thumb_config"
+                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image1_ok"
                 :before-upload="beforeAvatarUpload">
-                <img v-if="checkpoint.image_true" :src="checkpoint.image_true" class="avatar">
+                <img v-if="checkpoint.image1" :src="checkpoint.image1" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-form-item>
-            <el-form-item label="错误反馈（image_false）:" prop="image_false">
+            <el-form-item label="状态图2（image2）:" prop="image2">
               <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
-                :data="image_config"
-                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image_false_ok"
+                :data="thumb_config"
+                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image2_ok"
                 :before-upload="beforeAvatarUpload">
-                <img v-if="checkpoint.image_false" :src="checkpoint.image_false" class="avatar">
+                <img v-if="checkpoint.image2" :src="checkpoint.image2" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-form-item>
+            <el-form-item label="状态图3（image3）:" prop="image3">
+              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
+                :data="thumb_config"
+                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image3_ok"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="checkpoint.image3" :src="checkpoint.image3" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </el-form-item>
+            <el-form-item label="状态图4（image4）:" prop="image4">
+              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
+                :data="thumb_config"
+                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image4_ok"
+                :before-upload="beforeAvatarUpload">
+                <img v-if="checkpoint.image4" :src="checkpoint.image4" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              </el-upload>
+            </el-form-item>
+            <el-form-item label="css属性（css）:" prop="css">
+              <el-input v-model="checkpoint.css" placeholder="css属性" type="textarea" :rows="3" style="width: 100%;"></el-input>
+            </el-form-item>
+
             <el-form-item>
               <el-button @click="$router.back()">返回</el-button>
             </el-form-item>
@@ -97,36 +129,39 @@ export default {
   },
   mounted() {},
   created() {
-    // 普通图片上传配置信息
-    this.image_config = {
-        code: this.$store.state.game_config.game_code,
-        width: 480,
-    };
-
-    // 缩略图片上传配置信息
-    this.thumb_config = {
-        code: this.$store.state.game_config.game_code,
-        width: 240,
-    };
-
     if (this.$route.params.id) {
       this.get_data(this.$route.params.id);
     } else {
       var checkpoint = {
         id: "9999",
         status: 0,
+        method: 0,
+        show: true,
         code: "96fc5132fd9ced272f5d1d1a784bbc18",
         name: "新关卡",
-        title: "title",
         memo: "关卡说明",
         lng: "104.00",
         lat: "30.00",
-        question: false,
-        show: true
+        question: "0",
       };
       this.$store.commit('add_checkpoint', checkpoint);
       this.get_data(checkpoint.id);
     }
+
+    // 普通图片上传配置信息
+    this.image_config = {
+        id: this.checkpoint.id,
+        code: this.$store.state.game_config.game_code,
+        width: 480,
+    };
+
+    // 缩略图片上传配置信息
+    this.thumb_config = {
+        id: this.checkpoint.id,
+        code: this.$store.state.game_config.game_code,
+        width: 240,
+    };
+
   },
   methods: {
     get_data(id) {
@@ -137,24 +172,29 @@ export default {
       this.load_message = "上传中：" + file.percentage.toFixed(2) + "%";
     },
 
-    upload_image_ok(res, file) {
+    upload_image0_ok(res, file) {
       this.load_data = false;
-      this.checkpoint.image = file.response;
+      this.checkpoint.image0 = file.response;
     },
 
-    upload_image_true_ok(res, file) {
+    upload_image1_ok(res, file) {
       this.load_data = false;
-      this.checkpoint.image_true = file.response;
+      this.checkpoint.image1 = file.response;
     },
 
-    upload_image_false_ok(res, file) {
+    upload_image2_ok(res, file) {
       this.load_data = false;
-      this.checkpoint.image_false = file.response;
+      this.checkpoint.image2 = file.response;
     },
 
-    upload_thumb_ok(res, file) {
+    upload_image3_ok(res, file) {
       this.load_data = false;
-      this.checkpoint.thumb = file.response;
+      this.checkpoint.image3 = file.response;
+    },
+
+    upload_image4_ok(res, file) {
+      this.load_data = false;
+      this.checkpoint.image4 = file.response;
     },
 
     beforeAvatarUpload(file) {

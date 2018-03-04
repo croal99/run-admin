@@ -12,18 +12,16 @@
       <el-table :data="$store.state.checkpoint_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
         <el-table-column type="selection" width="55">
         </el-table-column>
-        <el-table-column prop="id" label="id" width="80">
+        <el-table-column prop="id" label="编号" width="80">
         </el-table-column>
-        <el-table-column prop="name" label="name" width="200">
+        <el-table-column prop="memo" label="说明">
         </el-table-column>
-        <el-table-column prop="memo" label="memo">
-        </el-table-column>
-        <el-table-column label="image" width="240">
-          <template slot-scope="scope">
-            <img :src="scope.row.image" width="240">
+        <el-table-column label="显示" width="80">
+          <template scope="props">
+            <span v-if="props.row.show">是</span>
           </template>
-        </el-table-column>
-        <el-table-column label="操作" width="100">
+        </el-table-column>        
+        <el-table-column label="操作" width="220">
           <template scope="props">
             <router-link :to="{name: 'checkpointEdit', params: {id: props.row.id}}" tag="span">
               <el-button type="success" size="mini" icon="edit">编辑</el-button>

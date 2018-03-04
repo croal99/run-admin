@@ -13,6 +13,8 @@
             </el-option>
           </el-select>
         </el-form-item>
+        <el-form-item v-if="$store.state.game_config" :label="$store.state.game_config.memo">
+        </el-form-item>
         <el-form-item>
           <el-button type="primary" size="small" @click="set_game">设置</el-button>
         </el-form-item>

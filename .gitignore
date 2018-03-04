@@ -31,3 +31,4 @@ pom.xml.versionsBackup
 node_modules/
 dist/
 package-lock.json
+backup
