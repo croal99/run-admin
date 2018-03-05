@@ -59,6 +59,7 @@ npm run build
 │   │   ├── media                    // 多媒體管理
 │   │   │   ├── picture              // 圖片
 │   │   │   │   ├── list.vue         // 圖片管理
+│   │   │   │   ├── edit.vue         // 圖片管理
 │   ├── plugins                      // 各种插件
 │   ├── router                       // 路由配置及map
 │   ├── store                        // Vuex 状态管理器

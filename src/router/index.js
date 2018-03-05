@@ -145,7 +145,7 @@ const routes = [{
     },
     {
       path: '/media/picture/list',
-      name: 'picture',
+      name: 'pictureAdd',
       component: pictureListComponent,
       meta: {
         title: "圖片列表",
@@ -154,7 +154,7 @@ const routes = [{
     },
     {
       path: '/media/picture/edit',
-      name: 'picture',
+      name: 'pictureEdit',
       component: pictureEditComponent,
       meta: {
         title: "圖片編輯",

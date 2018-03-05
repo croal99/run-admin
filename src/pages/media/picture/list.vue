@@ -4,7 +4,7 @@
       <el-button @click.stop="on_refresh" size="small">
         <i class="fa fa-refresh"></i>
       </el-button>
-      <router-link :to="{name: 'questionAdd'}" tag="span">
+      <router-link :to="{name: 'pictureEdit'}" tag="span">
         <el-button type="primary" icon="plus" size="small">添加圖片</el-button>
       </router-link>
     </panel-title>
@@ -14,12 +14,22 @@
         </el-table-column> -->
         <el-table-column label="image" width="240">
           <template slot-scope="scope">
-            <img :src="scope.row.url" width="240">
+              <img :src="scope.row.url" width="240">
           </template>
         </el-table-column>
-        <el-table-column prop="mtime" label="时间" width="200">
+        <el-table-column prop="mtime" label="简介" width="250">
+        </el-table-column>
+        <el-table-column prop="mtime" label="时间" width="170">
         </el-table-column>
         <el-table-column prop="url" label="URL">
+        </el-table-column>        
+        <el-table-column label="操作" width="90">
+          <template scope="props">
+            <router-link :to="{name: 'pictureEdit', params: {picture: props.row}}" tag="span">
+              <el-button type="success" size="mini" icon="edit">编辑</el-button>
+            </router-link>
+            <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row)">删除</el-button>
+          </template>
         </el-table-column>
       </el-table>
       <bottom-tool-bar>
