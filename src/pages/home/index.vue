@@ -13,8 +13,6 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item v-if="$store.state.game_config" :label="$store.state.game_config.memo">
-        </el-form-item>
         <el-form-item>
           <el-button type="primary" size="small" @click="set_game">设置</el-button>
         </el-form-item>
@@ -36,6 +34,24 @@
           </template>
         </el-table-column>
       </el-table>
+      <div>
+        <br/>
+      <el-row>
+        <el-col :span="16">
+          <el-form v-if="game_config" :model="game_config" label-width="150px">
+            <el-form-item label="名称（name）:" prop="name">
+              <el-input v-model="game_config.name" placeholder="名称" style="width: 100%;"></el-input>
+            </el-form-item>
+            <el-form-item label="说明（memo）:" prop="memo">
+              <el-input v-model="game_config.memo" placeholder="游戏说明" style="width: 100%;"></el-input>
+            </el-form-item>
+            <el-form-item label="主页CSS（main）:" prop="main">
+              <el-input v-model="game_config.main" placeholder="主页CSS" type="textarea" :rows="8" style="width: 100%;"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-col>
+      </el-row>
+      </div>
     </div>
   </div>
 </template>
@@ -57,6 +73,7 @@ export default {
         }
       ],
       config_list: [], // 游戏配置
+      game_config: null,
       load_data: false // 请求时的loading效果
     };
   },
@@ -77,6 +94,7 @@ export default {
         .then(({ data }) => {
           this.$message.success("加载历史数据成功");
           this.$store.commit("set_game_config", data);
+          this.game_config = this.$store.state.game_config;
           this.load_data = false;
         });
     },
@@ -117,6 +135,7 @@ export default {
         .then(({ data }) => {
           this.$message.success("加载成功");
           this.$store.commit("set_game_config", data);
+          this.game_config = this.$store.state.game_config;
           this.get_config_list();
         })
         .catch(() => {
