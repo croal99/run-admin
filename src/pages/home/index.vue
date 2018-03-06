@@ -121,6 +121,10 @@ export default {
         {
           value: "1234",
           label: "消失的宝藏"
+        },
+        {
+          value: "0112",
+          label: "洛帶建字庫"
         }
       ],
       config_list: [], // 游戏配置
