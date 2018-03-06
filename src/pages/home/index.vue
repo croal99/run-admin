@@ -5,11 +5,7 @@
       <el-form :inline="true">
         <el-form-item label="游戏名称">
           <el-select v-model="$store.state.game_code" placeholder="游戏">
-            <el-option
-              v-for="game in game_list"
-              :key="game.value"
-              :label="game.label"
-              :value="game.value">
+            <el-option v-for="game in game_list" :key="game.value" :label="game.label" :value="game.value">
             </el-option>
           </el-select>
         </el-form-item>
@@ -20,41 +16,96 @@
           <el-button type="success" size="small" @click="save_game">保存当前设置</el-button>
         </el-form-item>
       </el-form>
-      <el-table :data="config_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
-        <el-table-column prop="filename" label="文件名" width="200">
-        </el-table-column>
-        <el-table-column prop="memo" label="说明" width="250">
-        </el-table-column>
-        <el-table-column prop="mtime" label="时间">
-        </el-table-column>
-        <el-table-column label="操作" width="200">
-          <template scope="props">
-            <el-button type="success" size="mini" icon="edit" @click="load_config(props.row)">加载</el-button>
-            <!-- <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row)">删除</el-button> -->
-          </template>
-        </el-table-column>
-      </el-table>
-      <div>
-        <br/>
-      <el-row>
-        <el-col :span="16">
-          <el-form v-if="game_config" :model="game_config" label-width="150px">
+      <el-tabs type="border-card">
+        <el-tab-pane label="基本设置">
+          <el-form v-if="game_config" label-width="150px">
             <el-form-item label="名称（name）:" prop="name">
-              <el-input v-model="game_config.name" placeholder="名称" style="width: 100%;"></el-input>
+              <el-input v-model="game_config.name" placeholder="名称" style="width: 400px;"></el-input>
             </el-form-item>
             <el-form-item label="说明（memo）:" prop="memo">
-              <el-input v-model="game_config.memo" placeholder="游戏说明" style="width: 100%;"></el-input>
-            </el-form-item>
-            <el-form-item label="主页CSS（main）:" prop="main">
-              <el-input v-model="game_config.main" placeholder="主页CSS" type="textarea" :rows="8" style="width: 100%;"></el-input>
+              <el-input v-model="game_config.memo" placeholder="游戏说明" style="width: 400px;"></el-input>
             </el-form-item>
           </el-form>
-        </el-col>
-      </el-row>
-      </div>
+        </el-tab-pane>
+
+        <el-tab-pane label="历史版本">
+          <el-table :data="config_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
+            <el-table-column prop="filename" label="文件名" width="200">
+            </el-table-column>
+            <el-table-column prop="memo" label="说明" width="250">
+            </el-table-column>
+            <el-table-column prop="mtime" label="时间">
+            </el-table-column>
+            <el-table-column label="操作" width="200">
+              <template scope="props">
+                <el-button type="success" size="mini" icon="edit" @click="load_config(props.row)">加载</el-button>
+                <!-- <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row)">删除</el-button> -->
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-tab-pane>
+
+        <el-tab-pane label="main">
+          <el-form v-if="game_config" label-width="150px">
+            <el-form-item label="HTML:">
+              <el-input v-model="game_config.main.html" placeholder="HTML" type="textarea" :rows="8" style="width: 90%;"></el-input>
+            </el-form-item>
+            <el-form-item label="CSS:">
+              <el-input v-model="game_config.main.css" placeholder="CSS" type="textarea" :rows="8" style="width: 90%;"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+
+        <el-tab-pane label="welcome">
+          <el-form v-if="game_config" label-width="150px">
+            <el-form-item label="HTML:">
+              <el-input v-model="game_config.welcome.html" placeholder="HTML" type="textarea" :rows="8" style="width: 90%;"></el-input>
+            </el-form-item>
+            <el-form-item label="CSS:">
+              <el-input v-model="game_config.welcome.css" placeholder="CSS" type="textarea" :rows="8" style="width: 90%;"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+
+        <el-tab-pane label="end">
+          <el-form v-if="game_config" label-width="150px">
+            <el-form-item label="HTML:">
+              <el-input v-model="game_config.end.html" placeholder="HTML" type="textarea" :rows="8" style="width: 90%;"></el-input>
+            </el-form-item>
+            <el-form-item label="CSS:">
+              <el-input v-model="game_config.end.css" placeholder="CSS" type="textarea" :rows="8" style="width: 90%;"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+
+        <el-tab-pane label="setting">
+          <el-form v-if="game_config" label-width="150px">
+            <el-form-item label="HTML:">
+              <el-input v-model="game_config.setting.html" placeholder="HTML" type="textarea" :rows="8" style="width: 90%;"></el-input>
+            </el-form-item>
+            <el-form-item label="CSS:">
+              <el-input v-model="game_config.setting.css" placeholder="CSS" type="textarea" :rows="8" style="width: 90%;"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+
+        <el-tab-pane label="rank">
+          <el-form v-if="game_config" label-width="150px">
+            <el-form-item label="HTML:">
+              <el-input v-model="game_config.rank.html" placeholder="HTML" type="textarea" :rows="8" style="width: 90%;"></el-input>
+            </el-form-item>
+            <el-form-item label="CSS:">
+              <el-input v-model="game_config.rank.css" placeholder="CSS" type="textarea" :rows="8" style="width: 90%;"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+        
+      </el-tabs>
+
     </div>
   </div>
 </template>
+
 <script type="text/javascript">
 import { panelTitle } from "components";
 
