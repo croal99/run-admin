@@ -46,3 +46,21 @@ export function load_config(data) {
     data
   })
 }
+
+// 保存CSS配置
+export function set_css(data) {
+  return fetch({
+    url: port_game_config.set_css,
+    method: 'post',
+    data
+  })
+}
+
+// 保存CSS配置
+export function get_css(data) {
+  return fetch({
+    url: port_game_config.get_css,
+    method: 'post',
+    data
+  })
+}
