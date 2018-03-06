@@ -33,7 +33,10 @@ import { panelTitle } from "components";
 export default {
   data() {
     return {
-      picture: null,
+      picture: {
+        filename: '',
+        url: ''
+        },
       route_id: this.$route.params.id,
       load_data: false,
       load_message: '',
@@ -41,27 +44,9 @@ export default {
     };
   },
   created() {
-    if (this.$route.params.filename & this.$route.params.url) {
-      // this.get_data(this.$route.params.url);
-      this.picture = {
-        filename: this.$route.params.filename,
-        url:this.$route.params.url
-      };
-
-    } else {
-      this.picture = {
-        filename: "无",
-        url:""
-      };
-      // this.$store.commit('add_checkpoint', picture);
-      // this.get_data(picture.id);
-    }
-
     // 普通图片上传配置信息
     this.image_config = {
-        filename: this.picture.filename,
-        // code: this.$store.state.game_config.game_code,
-        width: 480,
+        width: 0,
     };
 
   },
