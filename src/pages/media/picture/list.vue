@@ -25,10 +25,10 @@
         </el-table-column>        
         <el-table-column label="操作" width="90">
           <template scope="props">
-            <router-link :to="{name: 'pictureEdit', params: {picture: props.row.url}}" tag="span">
+            <router-link :to="{name: 'pictureEdit', params: {url: props.row.url, filename: props.row.filename}}" tag="span">
               <el-button type="success" size="mini" icon="edit">编辑</el-button>
             </router-link>
-            <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row.url)">删除</el-button>
+            <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row.filename)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
