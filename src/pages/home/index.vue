@@ -226,6 +226,7 @@ export default {
             title: "提示",
             message: "发生错误了"
           });
+          this.game_css = '';
         });
     },
 
@@ -235,7 +236,7 @@ export default {
       this.$fetch.api_game_config
         .set_css({
           code: this.$store.state.game_code,
-          css: this.css
+          css: this.game_css
         })
         .then(({ data }) => {
           this.$message.success("保存成功");
