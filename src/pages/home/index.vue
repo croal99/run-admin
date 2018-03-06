@@ -99,6 +99,18 @@
             </el-form-item>
           </el-form>
         </el-tab-pane>
+
+        <el-tab-pane label="CSS">
+          <el-form label-width="150px">
+            <el-form-item label="CSS:">
+              <el-input v-model="game_css" placeholder="CSS" type="textarea" :rows="8" style="width: 90%;"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button @click="get_css()">加载</el-button>
+              <el-button @click="set_css()">保存</el-button>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
         
       </el-tabs>
 
@@ -129,6 +141,7 @@ export default {
       ],
       config_list: [], // 游戏配置
       game_config: null,
+      game_css: '',
       load_data: false // 请求时的loading效果
     };
   },
@@ -192,6 +205,44 @@ export default {
           this.$store.commit("set_game_config", data);
           this.game_config = this.$store.state.game_config;
           this.get_config_list();
+        })
+        .catch(() => {
+          this.$notify.info({
+            title: "提示",
+            message: "发生错误了"
+          });
+        });
+    },
+
+    // 设置CSS数据
+    get_css() {
+      this.load_data = true;
+      this.$fetch.api_game_config
+        .get_css({
+          code: this.$store.state.game_code
+        })
+        .then(({ data }) => {
+          this.$message.success("加载成功");
+          this.game_css = data;
+        })
+        .catch(() => {
+          this.$notify.info({
+            title: "提示",
+            message: "发生错误了"
+          });
+        });
+    },
+
+    // 设置CSS数据
+    set_css() {
+      this.load_data = true;
+      this.$fetch.api_game_config
+        .set_css({
+          code: this.$store.state.game_code,
+          css: this.css
+        })
+        .then(({ data }) => {
+          this.$message.success("保存成功");
         })
         .catch(() => {
           this.$notify.info({
