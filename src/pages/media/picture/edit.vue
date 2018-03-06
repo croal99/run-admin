@@ -41,29 +41,34 @@ export default {
     };
   },
   created() {
-    if (this.$route.params.id) {
-      this.get_data(this.$route.params.id);
+    if (this.$route.params.filename & this.$route.params.url) {
+      // this.get_data(this.$route.params.url);
+      this.picture = {
+        filename: this.$route.params.filename,
+        url:this.$route.params.url
+      };
+
     } else {
-      var picture = {
+      this.picture = {
         filename: "无",
         url:""
       };
-      this.$store.commit('add_checkpoint', picture);
-      this.get_data(picture.id);
+      // this.$store.commit('add_checkpoint', picture);
+      // this.get_data(picture.id);
     }
 
     // 普通图片上传配置信息
     this.image_config = {
-        id: this.picture.id,
-        code: this.$store.state.game_config.game_code,
+        filename: this.picture.filename,
+        // code: this.$store.state.game_config.game_code,
         width: 480,
     };
 
   },
   methods: {
-    get_data(id) {
-      this.picture = this.$store.state.game_config.checkpoint_list[id];
-    },
+    // get_data(id) {
+    //   this.picture = this.$store.state.game_config.checkpoint_list[id];
+    // },
 
     on_progress(res, file) {
       this.load_message = "上传中：" + file.percentage.toFixed(2) + "%";
