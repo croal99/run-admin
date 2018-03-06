@@ -4,12 +4,11 @@
     <div class="panel-body" v-loading="load_data" :element-loading-text="load_message">
       <el-row>
         <el-col :span="16">
-          <el-form :model="picture" :rules="rules" label-width="150px">
+          <el-form :model="picture" label-width="150px">
             <el-form-item label="图片" prop="image">
-              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
-                :data="thumb_config"
-                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image0_ok"
-                :before-upload="beforeAvatarUpload">
+              <el-upload class="avatar-uploader" action="https://game.591cms.com/media/upload_image"
+                :data="image_config"
+                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image0_ok">
                 <img v-if="picture.url" :src="picture.url" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
