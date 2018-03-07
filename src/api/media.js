@@ -11,9 +11,10 @@ import fetch from 'common/fetch'
 import {port_media} from 'common/port_uri'
 
 // 获取图片文件列表
-export function picture_list(data) {
+export function picture_list(path) {
+  let data;
   return fetch({
-    url: port_media.picture_list,
+    url: port_media.picture_list+'?path='+path,
     method: 'get',
     data
   })

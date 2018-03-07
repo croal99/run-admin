@@ -14,10 +14,9 @@
         </el-table-column> -->
         <el-table-column label="image" width="240">
           <template slot-scope="scope">
-              <img :src="scope.row.url" width="240">
+            <el-button v-if="scope.row.isdir" size="mini" @click="get_picture_list(scope.row.fullname)">{{scope.row.filename}}</el-button>
+            <img v-else :src="scope.row.url" width="240">
           </template>
-        </el-table-column>
-        <el-table-column prop="mtime" label="简介" width="250">
         </el-table-column>
         <el-table-column prop="mtime" label="时间" width="170">
         </el-table-column>
@@ -25,9 +24,6 @@
         </el-table-column>        
         <el-table-column label="操作" width="90">
           <template scope="props">
-            <router-link :to="{name: 'pictureEdit', params: {url: props.row.url, filename: props.row.filename}}" tag="span">
-              <el-button type="success" size="mini" icon="edit">编辑</el-button>
-            </router-link>
             <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row.filename)">删除</el-button>
           </template>
         </el-table-column>
@@ -80,10 +76,11 @@ export default {
     },
 
     // 获取文件列表
-    get_picture_list() {
+    get_picture_list(path = '') {
       this.$fetch.api_media
-        .picture_list()
+        .picture_list(path)
         .then(({ data }) => {
+          console.log(data[0]);
           this.picture_list = data;
           this.load_data = false;
         });

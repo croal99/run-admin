@@ -13,9 +13,6 @@
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-form-item>
-            <el-form-item label="简介" prop="introduction">
-              <el-input v-model="picture.introduction" placeholder="简介" type="textarea" :rows="3" style="width: 100%;"></el-input>
-            </el-form-item>
 
             <el-form-item>
               <el-button @click="$router.back()">返回</el-button>
@@ -60,7 +57,6 @@ export default {
     },
 
     upload_image0_ok(res, file) {
-      console.log(file);
       this.load_data = false;
       this.picture.url = file.response;
     },
