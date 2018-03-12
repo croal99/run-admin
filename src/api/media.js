@@ -19,3 +19,13 @@ export function picture_list(path) {
     data
   })
 }
+
+
+export function delete_picture(path) {
+  let data;
+  return fetch({
+    url: port_media.delete_picture+'?path='+path,
+    method: 'get',
+    data
+  })
+}

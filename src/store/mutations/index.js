@@ -99,21 +99,6 @@ export default {
     }
   },
 
-  //刪除圖片
-  del_picture(state, filename) {
-    console.log(filename);
-    console.log(state);
-    // 删除配置信息
-    // delete state.game_config.question_list[id];
-
-    // // 重新创建题库列表（用于显示）
-    // state.question_list = [];
-    // for (var key in state.game_config.question_list) {
-    //   let question = state.game_config.question_list[key];
-    //   state.question_list.push(question);
-    // }
-  },
-
   // 设置用户信息和是否登录
   [type.SET_USER_INFO](state, userinfo) {
     state.user_info = userinfo || {}

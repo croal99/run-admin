@@ -24,7 +24,7 @@
         </el-table-column>        
         <el-table-column label="操作" width="90">
           <template scope="props">
-            <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row.filename)">删除</el-button>
+            <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row.fullname)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -57,15 +57,28 @@ export default {
     this.get_picture_list();
   },
   methods: {
-    delete_data(picture) {
-      console.log(picture);
+    delete_data(fullname) {
       this.$confirm("此操作将删除该数据, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
       })
         .then(() => {
-          // this.$store.commit("del_question", question.id);
+          console.log(fullname);
+          this.$fetch.api_media
+            .delete_picture(fullname)
+            .then(({ data }) => {
+              console.log(data);
+              if(data){
+                this.$message.success("删除成功");
+              }else{
+                this.$notify.info({
+                  title: "提示",
+                  message: "发生错误了"
+                });
+              }
+            })
+            .catch(() => {console.log('asdsda')});
         })
         .catch(() => {});
     },
@@ -77,6 +90,7 @@ export default {
 
     // 获取文件列表
     get_picture_list(path = '') {
+      console.log(path);
       this.$fetch.api_media
         .picture_list(path)
         .then(({ data }) => {
