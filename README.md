@@ -125,7 +125,7 @@ npm run build
 |7 | 多人摇一摇| 名称 | 说明| | 通关计数 |得分
 |9 | 任务书| 名称 | HTML |||得分
 |11 | 填空题 | 名称 | 说明|| 答案|得分
-|12 | 晋级书 | 名称|说明|关卡列表（,分割）||不显示
+|12 | 晋级书 | 名称|说明|关卡列表（,分割）|||不显示
 
 ![image](https://raw.githubusercontent.com/zzmhot/vue-admin/images/images_1.jpg)
 
