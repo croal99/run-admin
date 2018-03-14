@@ -52,7 +52,11 @@
             <el-form-item label="误差范围（range）:" prop="range">
               <el-input v-model="checkpoint.range" placeholder="误差范围" style="width: 250px;"></el-input>
             </el-form-item>
+            <el-form-item label="css属性（css）:" prop="css">
+              <el-input v-model="checkpoint.css" placeholder="css属性" type="textarea" :rows="4" style="width: 100%;"></el-input>
+            </el-form-item>
             <el-form-item label="状态图0（image0）:" prop="image0">
+              <el-input v-model="checkpoint.image0" placeholder="URL" style="width: 100%;"></el-input>
               <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
                 :data="thumb_config"
                 :show-file-list="false" :on-progress="on_progress" :on-success="upload_image0_ok"
@@ -62,6 +66,7 @@
               </el-upload>
             </el-form-item>
             <el-form-item label="状态图1（image1）:" prop="image1">
+              <el-input v-model="checkpoint.image1" placeholder="URL" style="width: 100%;"></el-input>
               <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
                 :data="thumb_config"
                 :show-file-list="false" :on-progress="on_progress" :on-success="upload_image1_ok"
@@ -71,6 +76,7 @@
               </el-upload>
             </el-form-item>
             <el-form-item label="状态图2（image2）:" prop="image2">
+              <el-input v-model="checkpoint.image2" placeholder="URL" style="width: 100%;"></el-input>
               <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
                 :data="thumb_config"
                 :show-file-list="false" :on-progress="on_progress" :on-success="upload_image2_ok"
@@ -80,6 +86,7 @@
               </el-upload>
             </el-form-item>
             <el-form-item label="状态图3（image3）:" prop="image3">
+              <el-input v-model="checkpoint.image3" placeholder="URL" style="width: 100%;"></el-input>
               <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
                 :data="thumb_config"
                 :show-file-list="false" :on-progress="on_progress" :on-success="upload_image3_ok"
@@ -89,6 +96,7 @@
               </el-upload>
             </el-form-item>
             <el-form-item label="状态图4（image4）:" prop="image4">
+              <el-input v-model="checkpoint.image4" placeholder="URL" style="width: 100%;"></el-input>
               <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
                 :data="thumb_config"
                 :show-file-list="false" :on-progress="on_progress" :on-success="upload_image4_ok"
@@ -96,9 +104,6 @@
                 <img v-if="checkpoint.image4" :src="checkpoint.image4" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
-            </el-form-item>
-            <el-form-item label="css属性（css）:" prop="css">
-              <el-input v-model="checkpoint.css" placeholder="css属性" type="textarea" :rows="3" style="width: 100%;"></el-input>
             </el-form-item>
 
             <el-form-item>
