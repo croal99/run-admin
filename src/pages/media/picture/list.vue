@@ -12,7 +12,7 @@
       <el-table :data="picture_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
         <!-- <el-table-column prop="filename" label="文件名" width="200">
         </el-table-column> -->
-        <el-table-column label="image" width="240">
+        <el-table-column label="image" width="240" height="120">
           <template slot-scope="scope">
             <el-button v-if="scope.row.isdir" size="mini" @click="get_picture_list(scope.row.fullname)">{{scope.row.filename}}</el-button>
             <img v-else :src="scope.row.url" width="240">
