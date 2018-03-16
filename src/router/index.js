@@ -52,6 +52,10 @@ import questionEditComponent from 'pages/question/edit'
 import pictureListComponent from 'pages/media/picture/list'
 import pictureEditComponent from 'pages/media/picture/edit'
 
+// 音频管理
+import audioListComponent from 'pages/media/audio/list'
+import audioEditComponent from 'pages/media/audio/edit'
+
 Vue.use(VueRouter)
 
 //使用AMD方式加载
@@ -148,7 +152,7 @@ const routes = [{
       name: 'pictureAdd',
       component: pictureListComponent,
       meta: {
-        title: "圖片列表",
+        title: "图片列表",
         auth: true
       }
     },
@@ -157,7 +161,25 @@ const routes = [{
       name: 'pictureEdit',
       component: pictureEditComponent,
       meta: {
-        title: "圖片編輯",
+        title: "图片編輯",
+        auth: true
+      }
+    },
+    {
+      path: '/media/audio/list',
+      name: 'audioAdd',
+      component: audioListComponent,
+      meta: {
+        title: "音频列表",
+        auth: true
+      }
+    },
+    {
+      path: '/media/audio/edit',
+      name: 'audioEdit',
+      component: audioEditComponent,
+      meta: {
+        title: "音频編輯",
         auth: true
       }
     },

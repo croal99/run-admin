@@ -20,11 +20,21 @@ export function picture_list(path) {
   })
 }
 
-
-export function delete_picture(path) {
+// 获取音频文件列表
+export function audio_list(path) {
   let data;
   return fetch({
-    url: port_media.delete_picture+'?path='+path,
+    url: port_media.audio_list+'?path='+path,
+    method: 'get',
+    data
+  })
+}
+
+
+export function delete_media(path) {
+  let data;
+  return fetch({
+    url: port_media.delete_media+'?path='+path,
     method: 'get',
     data
   })

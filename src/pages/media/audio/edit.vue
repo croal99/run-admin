@@ -5,11 +5,11 @@
       <el-row>
         <el-col :span="16">
           <el-form :model="picture" label-width="150px">
-            <el-form-item label="图片" prop="image">
-              <el-upload class="avatar-uploader" action="https://game.591cms.com/media/upload_image"
+            <el-form-item label="音频" prop="image">
+              <el-upload class="avatar-uploader" action="https://game.591cms.com/media/upload_audio"
                 :data="image_config"
                 :show-file-list="false" :on-progress="on_progress" :on-success="upload_image0_ok">
-                <img v-if="picture.url" :src="picture.url" class="avatar">
+                <audio ref="player" v-if="picture.url" :src="picture.url" class="avatar"></audio>
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-form-item>

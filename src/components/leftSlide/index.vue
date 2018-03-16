@@ -67,13 +67,17 @@ export default {
           ]
         },
         {
-          title: "多媒體管理",
+          title: "多媒体管理",
           path: "/media",
           icon: "fa-area-chart",
           child: [
             {
-              title: "圖片管理",
+              title: "图片管理",
               path: "/media/picture/list"
+            },
+            {
+              title: "音频管理",
+              path: "/media/audio/list"
             },
           ]
         },

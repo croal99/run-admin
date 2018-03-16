@@ -4,18 +4,18 @@
       <el-button @click.stop="on_refresh" size="small">
         <i class="fa fa-refresh"></i>
       </el-button>
-      <router-link :to="{name: 'pictureEdit'}" tag="span">
-        <el-button type="primary" icon="plus" size="small">添加图片</el-button>
+      <router-link :to="{name: 'audioEdit'}" tag="span">
+        <el-button type="primary" icon="plus" size="small">添加音频</el-button>
       </router-link>
     </panel-title>
     <div class="panel-body">
-      <el-table :data="picture_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
+      <el-table :data="audio_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
         <!-- <el-table-column prop="filename" label="文件名" width="200">
         </el-table-column> -->
         <el-table-column label="image" width="240" height="120">
           <template slot-scope="scope">
-            <el-button v-if="scope.row.isdir" size="mini" @click="get_picture_list(scope.row.fullname)">{{scope.row.filename}}</el-button>
-            <img v-else :src="scope.row.url" width="240">
+            <el-button v-if="scope.row.isdir" size="mini" @click="get_audio_list(scope.row.fullname)">{{scope.row.filename}}</el-button>
+            <audio v-else :src="scope.row.url" width="240"></audio>
           </template>
         </el-table-column>
         <el-table-column prop="mtime" label="时间" width="170">
@@ -43,7 +43,7 @@ import { panelTitle, bottomToolBar } from "components";
 export default {
   data() {
     return {
-      picture_list: [], // 图片文件列表
+      audio_list: [], // 图片文件列表
       load_data: false, // 请求时的loading效果
       batch_select: [] // 批量选择数组
     };
@@ -54,7 +54,7 @@ export default {
   },
   created() {
     this.load_data = true;
-    this.get_picture_list();
+    this.get_audio_list();
   },
   methods: {
     delete_data(fullname) {
@@ -85,17 +85,17 @@ export default {
 
     //刷新
     on_refresh() {
-      this.get_picture_list();
+      this.get_audio_list();
     },
 
     // 获取文件列表
-    get_picture_list(path = '') {
+    get_audio_list(path = '') {
       console.log(path);
       this.$fetch.api_media
-        .picture_list(path)
+        .audio_list(path)
         .then(({ data }) => {
           console.log(data[0]);
-          this.picture_list = data;
+          this.audio_list = data;
           this.load_data = false;
         });
     }
