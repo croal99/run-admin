@@ -2,7 +2,7 @@
   <div class="left-side">
     <div class="left-side-inner">
       <router-link to="/" class="logo block">
-        <img src="./images/logo.png" alt="AdminX">
+        <img src="./logo.png" alt="AdminX">
       </router-link>
       <el-menu
         class="menu-box"
