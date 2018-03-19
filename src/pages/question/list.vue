@@ -10,20 +10,20 @@
     </panel-title>
     <div class="panel-body">
       <el-table :data="$store.state.question_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
-        <el-table-column type="selection" width="55">
-        </el-table-column>
+        <!-- <el-table-column type="selection" width="55">
+        </el-table-column> -->
         <el-table-column prop="id" label="id" width="70">
         </el-table-column>
         <el-table-column prop="name" label="name" width="150">
         </el-table-column>
-        <!-- <el-table-column label="type" width="120">
+        <el-table-column label="type" width="120">
           <template scope="props">
             {{type_name[props.row.type]}}
           </template>
-        </el-table-column> -->
+        </el-table-column>
         <el-table-column prop="content" label="content">
         </el-table-column>
-        <el-table-column label="操作" width="120">
+        <el-table-column label="操作" width="180">
           <template scope="props">
             <router-link :to="{name: 'questionEdit', params: {id: props.row.id}}" tag="span">
               <el-button type="success" size="mini" icon="edit">编辑</el-button>
