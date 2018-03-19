@@ -16,6 +16,8 @@
         </el-table-column>
         <el-table-column prop="memo" label="说明">
         </el-table-column>
+        <el-table-column prop="question" label="题库" width="80">
+        </el-table-column>
         <el-table-column label="显示" width="80">
           <template scope="props">
             <span v-if="props.row.show">是</span>
