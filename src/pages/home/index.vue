@@ -61,31 +61,6 @@
             <el-form-item label="HTML:">
               <el-input v-model="game_config.end.html" placeholder="HTML" type="textarea" :rows="20" style="width: 90%;"></el-input>
             </el-form-item>
-            <!-- <el-form-item label="CSS:">
-              <el-input v-model="game_config.end.css" placeholder="CSS" type="textarea" :rows="8" style="width: 90%;"></el-input>
-            </el-form-item> -->
-          </el-form>
-        </el-tab-pane>
-
-        <el-tab-pane label="setting">
-          <el-form v-if="game_config" label-width="150px">
-            <el-form-item label="HTML:">
-              <el-input v-model="game_config.setting.html" placeholder="HTML" type="textarea" :rows="20" style="width: 90%;"></el-input>
-            </el-form-item>
-            <!-- <el-form-item label="CSS:">
-              <el-input v-model="game_config.setting.css" placeholder="CSS" type="textarea" :rows="8" style="width: 90%;"></el-input>
-            </el-form-item> -->
-          </el-form>
-        </el-tab-pane>
-
-        <el-tab-pane label="rank">
-          <el-form v-if="game_config" label-width="150px">
-            <el-form-item label="HTML:">
-              <el-input v-model="game_config.rank.html" placeholder="HTML" type="textarea" :rows="20" style="width: 90%;"></el-input>
-            </el-form-item>
-            <!-- <el-form-item label="CSS:">
-              <el-input v-model="game_config.rank.css" placeholder="CSS" type="textarea" :rows="8" style="width: 90%;"></el-input>
-            </el-form-item> -->
           </el-form>
         </el-tab-pane>
 
