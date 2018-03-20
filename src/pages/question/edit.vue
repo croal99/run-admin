@@ -3,7 +3,7 @@
     <panel-title :title="$route.meta.title"></panel-title>
     <div class="panel-body" v-loading="load_data" :element-loading-text="load_message">
       <el-row>
-        <el-col :span="16">
+        <el-col :span="20">
           <el-form :model="question" :rules="rules" label-width="150px">
             <el-form-item>
               <el-button @click="$router.back()">返回</el-button>
