@@ -103,6 +103,10 @@ export default {
           label: "洛帶建字庫"
         },
         {
+          value: "wjl01",
+          label: "望江楼"
+        },
+        {
           value: "debug",
           label: "测试专用"
         }
