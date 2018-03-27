@@ -5,8 +5,13 @@
       <el-row>
         <el-col :span="20">
           <el-form :model="checkpoint" :rules="rules" label-width="150px">
-            <el-form-item>
+            <el-form-item :label="'编号（'+checkpoint.id+'）'">
               <el-button @click="$router.back()">返回</el-button>
+            </el-form-item>
+            <el-form-item label="编码（code）:" prop="code">
+              <el-input v-model="checkpoint.code" placeholder="编码" style="width: 100%;">
+                <el-button slot="append" icon="el-icon-search" @click="dialog_qrcode = true">二维码</el-button>
+              </el-input>
             </el-form-item>
             <el-form-item label="说明（memo）:" prop="memo">
               <el-input v-model="checkpoint.memo" placeholder="关卡说明" style="width: 100%;"></el-input>
@@ -39,7 +44,8 @@
             <el-form-item label="题目(question):" prop="question">
               <el-select v-model="checkpoint.question" placeholder="题目" style="width: 250px;">
                 <el-option label="(0)-未设置" value="0"></el-option>
-                <el-option v-for="question in $store.state.question_list" :key="question.id" :label="'('+question.id+')-'+question.name" :value="question.id">
+                <el-option v-for="question in $store.state.question_list" :key="question.id" :label="'('+question.id+')-'+question.name"
+                  :value="question.id">
                 </el-option>
               </el-select>
             </el-form-item>
@@ -57,50 +63,40 @@
             </el-form-item>
             <el-form-item label="状态图0（image0）:" prop="image0">
               <el-input v-model="checkpoint.image0" placeholder="URL" style="width: 100%;"></el-input>
-              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
-                :data="thumb_config"
-                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image0_ok"
-                :before-upload="beforeAvatarUpload">
+              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image" :data="thumb_config" :show-file-list="false"
+                :on-progress="on_progress" :on-success="upload_image0_ok" :before-upload="beforeAvatarUpload">
                 <img v-if="checkpoint.image0" :src="checkpoint.image0" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-form-item>
             <el-form-item label="状态图1（image1）:" prop="image1">
               <el-input v-model="checkpoint.image1" placeholder="URL" style="width: 100%;"></el-input>
-              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
-                :data="thumb_config"
-                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image1_ok"
-                :before-upload="beforeAvatarUpload">
+              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image" :data="thumb_config" :show-file-list="false"
+                :on-progress="on_progress" :on-success="upload_image1_ok" :before-upload="beforeAvatarUpload">
                 <img v-if="checkpoint.image1" :src="checkpoint.image1" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-form-item>
             <el-form-item label="状态图2（image2）:" prop="image2">
               <el-input v-model="checkpoint.image2" placeholder="URL" style="width: 100%;"></el-input>
-              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
-                :data="thumb_config"
-                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image2_ok"
-                :before-upload="beforeAvatarUpload">
+              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image" :data="thumb_config" :show-file-list="false"
+                :on-progress="on_progress" :on-success="upload_image2_ok" :before-upload="beforeAvatarUpload">
                 <img v-if="checkpoint.image2" :src="checkpoint.image2" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-form-item>
             <el-form-item label="状态图3（image3）:" prop="image3">
               <el-input v-model="checkpoint.image3" placeholder="URL" style="width: 100%;"></el-input>
-              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
-                :data="thumb_config"
-                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image3_ok"
-                :before-upload="beforeAvatarUpload">
+              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image" :data="thumb_config" :show-file-list="false"
+                :on-progress="on_progress" :on-success="upload_image3_ok" :before-upload="beforeAvatarUpload">
                 <img v-if="checkpoint.image3" :src="checkpoint.image3" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-form-item>
             <el-form-item label="状态图4（image4）:" prop="image4">
               <el-input v-model="checkpoint.image4" placeholder="URL" style="width: 100%;"></el-input>
-              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image"
-                :data="thumb_config"
-                :show-file-list="false" :on-progress="on_progress" :on-success="upload_image4_ok"
-                :before-upload="beforeAvatarUpload">
+              <el-upload class="avatar-uploader" action="https://game.591cms.com/api3/upload_image" :data="thumb_config" :show-file-list="false"
+                :on-progress="on_progress" :on-success="upload_image4_ok" :before-upload="beforeAvatarUpload">
                 <img v-if="checkpoint.image4" :src="checkpoint.image4" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
@@ -113,11 +109,25 @@
         </el-col>
       </el-row>
     </div>
+
+    <el-dialog title="提示" :visible.sync="dialog_qrcode" width="30%">
+      <el-form :model="checkpoint">
+        <el-form-item label="二维码内容" label-width="100px">
+          <el-input v-model="checkpoint.qrcode" type="textarea" :rows="4"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialog_qrcode = false">取 消</el-button>
+        <el-button type="primary" @click="make_qrcode">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
+
 <script type="text/javascript">
 import { panelTitle } from "components";
+import md5 from 'js-md5';
 
 export default {
   data() {
@@ -129,7 +139,8 @@ export default {
       on_submit_loading: false,
       rules: {
         name: [{ required: true, message: "姓名不能为空", trigger: "blur" }]
-      }
+      },
+      dialog_qrcode: false,
     };
   },
   mounted() {},
@@ -169,6 +180,11 @@ export default {
 
   },
   methods: {
+    make_qrcode() {
+      this.checkpoint.code = md5(this.checkpoint.qrcode);
+      this.dialog_qrcode = false;
+    },
+
     get_data(id) {
       this.checkpoint = this.$store.state.game_config.checkpoint_list[id];
     },

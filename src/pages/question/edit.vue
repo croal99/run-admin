@@ -5,7 +5,7 @@
       <el-row>
         <el-col :span="20">
           <el-form :model="question" :rules="rules" label-width="150px">
-            <el-form-item>
+            <el-form-item :label="'编号（'+question.id+'）'">
               <el-button @click="$router.back()">返回</el-button>
             </el-form-item>
             <el-form-item label="类型（type）:" prop="type">
@@ -33,14 +33,16 @@
             <el-form-item label="正确分支（true_id）:" prop="true_id">
               <el-select v-model="question.true_id" placeholder="正确分支">
                 <el-option label="(0)-结束" value="0"></el-option>
-                <el-option v-for="question in $store.state.question_list" :key="question.id" :label="'('+question.id+')-'+question.name" :value="question.id">
+                <el-option v-for="question in $store.state.question_list" :key="question.id" :label="'('+question.id+')-'+question.name"
+                  :value="question.id">
                 </el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="错误分支（true_id）:" prop="false_id">
               <el-select v-model="question.false_id" placeholder="错误分支">
                 <el-option label="(0)-结束" value="0"></el-option>
-                <el-option v-for="question in $store.state.question_list" :key="question.id" :label="'('+question.id+')-'+question.name" :value="question.id">
+                <el-option v-for="question in $store.state.question_list" :key="question.id" :label="'('+question.id+')-'+question.name"
+                  :value="question.id">
                 </el-option>
               </el-select>
             </el-form-item>
@@ -53,6 +55,7 @@
     </div>
   </div>
 </template>
+
 
 <script type="text/javascript">
 import { panelTitle } from "components";
@@ -101,7 +104,9 @@ export default {
       on_submit_loading: false,
       rules: {
         name: [{ required: true, message: "姓名不能为空", trigger: "blur" }]
-      }
+      },
+
+      dialog_qrcode: false,
     };
   },
   mounted() {},
@@ -126,6 +131,10 @@ export default {
     }
   },
   methods: {
+    show_qrcode(question) {
+      this.dialog_qrcode = true;
+    },
+
     get_data(id) {
       console.log("get_data");
       this.question = this.$store.state.game_config.question_list[id];
