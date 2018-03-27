@@ -9,7 +9,7 @@
               <el-button @click="$router.back()">返回</el-button>
             </el-form-item>
           </el-form>
-            <div id="question_chart" style="width: 100%"></div>
+            <div id="question_chart" style="overflow-y:scroll;overflow-x:scroll;"></div>
         </el-col>
       </el-row>
     </div>
@@ -19,6 +19,7 @@
 
 <script>
 import { panelTitle } from "components";
+import { orgTree } from "components";
 
 export default {
   data() {
@@ -177,7 +178,7 @@ export default {
         return false;
       }
       let question = this.$store.state.game_config.question_list[qid];
-      console.log("question", data, qid, question);
+      console.log("question", data, qid, question.type);
       let children_list = [];
 
       // 正确分支
@@ -188,7 +189,7 @@ export default {
           children: child_item.children
         };
         children_list.push(children);
-      } else {
+      } else if(parseInt(question.type) != 0){
         let children = { name: "正确：结束" };
         children_list.push(children);
       }
@@ -201,14 +202,33 @@ export default {
           children: child_item.children
         };
         children_list.push(children);
-      } else {
+      } else if(parseInt(question.type) != 0){
         let children = { name: "错误：结束" };
         children_list.push(children);
       }
 
+      //分类目录
+      if (parseInt(question.type) == 0){
+        let children_list0 = question.items.split(',');
+        console.log('type0',children_list0);
+        for(let i = 0; i < children_list0.length; i++){
+          child_item = this.question_detail(data, children_list0[i]);
+          if (child_item) {
+            let children = {
+              name: this.question_info(child_item.question),
+              children: child_item.children
+            };
+            children_list.push(children);
+          } else {
+            let children = { name: children_list0[i] + "错误" };
+            children_list.push(children);
+          }
+        }
+      }
+
       // data.name = this.question_info(question);
       //   data.name = question.id;
-      if (parseInt(question.true_id) != 0 || parseInt(question.false_id) != 0) {
+      if (parseInt(question.true_id) != 0 || parseInt(question.false_id) != 0 || parseInt(question.type) == 0) {
         // 至少要有一个分支，才显示下一级
         // console.log("child1", question);
         // data.children = children_list;
