@@ -101,6 +101,10 @@ export default {
         {
           value: "0112",
           label: "洛帶建字庫"
+        },
+        {
+          value: "debug",
+          label: "测试专用"
         }
       ],
       config_list: [], // 游戏配置
