@@ -58,8 +58,11 @@
             <el-form-item label="误差范围（range）:" prop="range">
               <el-input v-model="checkpoint.range" placeholder="误差范围" style="width: 250px;"></el-input>
             </el-form-item>
-            <el-form-item label="css属性（css）:" prop="css">
-              <el-input v-model="checkpoint.css" placeholder="css属性" type="textarea" :rows="4" style="width: 100%;"></el-input>
+            <el-form-item label="显示css（css）:" prop="css">
+              <el-input v-model="checkpoint.css" placeholder="css名称" style="width: 250px;"></el-input>
+            </el-form-item>
+            <el-form-item label="过渡css（css1）:" prop="css1">
+              <el-input v-model="checkpoint.css1" placeholder="css名称" style="width: 250px;"></el-input>
             </el-form-item>
             <el-form-item label="状态图0（image0）:" prop="image0">
               <el-input v-model="checkpoint.image0" placeholder="URL" style="width: 100%;"></el-input>
