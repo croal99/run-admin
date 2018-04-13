@@ -81,17 +81,17 @@ export default {
             },
           ]
         },
-        // {
-        //   title: "图表管理",
-        //   path: "/charts",
-        //   icon: "fa-bar-chart-o",
-        //   child: [
-        //     {
-        //       title: "柱状图表",
-        //       path: "/charts/bar"
-        //     }
-        //   ]
-        // }
+        {
+          title: "玩家管理",
+          path: "/player",
+          icon: "fa-bar-chart-o",
+          child: [
+            {
+              title: "玩家列表",
+              path: "/player/list"
+            }
+          ]
+        }
       ]
     };
   }

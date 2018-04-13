@@ -45,23 +45,26 @@ npm run build
 │   │   ├── storage                  // 本地存储接口
 │   │   ├── tools                    // 一些转换工具
 │   ├── components                   // 各种组件
-│   │   ├── leftSlide                // 左边导航
-│   │   ├── mainContent              // 中间数据
+│   │   ├── leftSlide                   // 左边导航
+│   │   ├── mainContent                 // 中间数据
 │   ├── mock                         // mock（暂时不需要）
 │   ├── pages                        // 各种页面
 │   │   ├── checkpoint               // 关卡管理
-│   │   │   ├── list.vue             // 关卡列表
-│   │   │   ├── process.vue          // 关卡中的任务分配情况
-│   │   │   ├── edit.vue             // 关卡信息编辑
+│   │   │   ├── list.vue                // 关卡列表
+│   │   │   ├── process.vue             // 关卡中的任务分配情况
+│   │   │   ├── edit.vue                // 关卡信息编辑
 │   │   ├── question                 // 题库管理
-│   │   │   ├── list.vue             // 题库列表
-│   │   │   ├── edit.vue             // 题库信息编辑
-│   │   ├── media                    // 多媒體管理
-│   │   │   ├── picture              // 圖片
-│   │   │   │   ├── list.vue         // 圖片管理
-│   │   │   │   ├── edit.vue         // 圖片管理
-│   │   │   ├── audio                // 音频
-│   │   │   │   ├── list.vue         // 音频管理
+│   │   │   ├── list.vue                // 题库列表
+│   │   │   ├── edit.vue                // 题库信息编辑
+│   │   ├── player                   // 玩家管理
+│   │   │   ├── list.vue                // 玩家列表
+│   │   │   ├── record.vue              // 玩家记录
+│   │   ├── media                    // 多媒体管理
+│   │   │   ├── picture                 // 图片
+│   │   │   │   ├── list.vue               // 图片列表
+│   │   │   │   ├── edit.vue               // 图片编辑
+│   │   │   ├── audio                   // 音频
+│   │   │   │   ├── list.vue               // 音频管理
 │   ├── plugins                      // 各种插件
 │   ├── router                       // 路由配置及map
 │   ├── store                        // Vuex 状态管理器

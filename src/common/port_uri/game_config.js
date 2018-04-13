@@ -13,3 +13,5 @@ export const get_css = "/game/get_css"
 // 设置CSS配置
 export const set_css = "/game/set_css"
 
+// 获取用户列表
+export const get_user_list = "/game/get_user_list"

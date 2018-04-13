@@ -56,6 +56,10 @@ import pictureEditComponent from 'pages/media/picture/edit'
 import audioListComponent from 'pages/media/audio/list'
 import audioEditComponent from 'pages/media/audio/edit'
 
+// 玩家管理
+import playerListComponent from 'pages/player/list'
+import playerRecordComponent from 'pages/player/record'
+
 Vue.use(VueRouter)
 
 //使用AMD方式加载
@@ -180,6 +184,24 @@ const routes = [{
       component: audioEditComponent,
       meta: {
         title: "音频編輯",
+        auth: true
+      }
+    },
+    {
+      path: '/player/list',
+      name: 'playerList',
+      component: playerListComponent,
+      meta: {
+        title: "玩家列表",
+        auth: true
+      }
+    },
+    {
+      path: '/player/record',
+      name: 'playerRecord',
+      component: playerRecordComponent,
+      meta: {
+        title: "玩家记录",
         auth: true
       }
     },

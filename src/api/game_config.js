@@ -64,3 +64,12 @@ export function get_css(data) {
     data
   })
 }
+
+// 获取用户列表
+export function get_user_list(data) {
+  return fetch({
+    url: port_game_config.get_user_list,
+    method: 'post',
+    data
+  })
+}
