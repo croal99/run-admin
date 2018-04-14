@@ -118,6 +118,7 @@ npm run build
 |mark|char|详细说明见下表|
 |true_id|int|回答正确后跳转题目编号（0--无跳转）|
 |false_id|int|回答错误后跳转题目编号（0--无跳转）|
+|tag|char|以逗号分隔|
 |child|array|下级题目（如果有下级题目，才会出现该字段。用于内部流程）|
 
 # type定义

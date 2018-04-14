@@ -46,6 +46,9 @@
                 </el-option>
               </el-select>
             </el-form-item>
+            <el-form-item label="标签（tag）:" prop="tag">
+              <el-input v-model="question.tag" placeholder="题目标签" style="width: 100%;"></el-input>
+            </el-form-item>
             <el-form-item>
               <el-button @click="$router.back()">返回</el-button>
             </el-form-item>
@@ -125,6 +128,7 @@ export default {
         mark: "0",
         true_id: "0",
         false_id: "0",
+        tag:"",
       };
       this.$store.commit('add_question', question);
       this.get_data(question.id);
