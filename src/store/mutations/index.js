@@ -22,6 +22,16 @@ export default {
   set_game_config(state, config) {
     state.game_config = config;
 
+    // welcome
+    if (!state.game_config.hasOwnProperty('welcome')) {
+      state.game_config.welcome   = {'html':'<!-- welcome -->'};
+    }
+
+    // end
+    if (!state.game_config.hasOwnProperty('end')) {
+      state.game_config.end   = {'html':'<!-- end -->'};
+    }
+
     // 关卡列表
     state.checkpoint_list = [];
     for (var key in state.game_config.checkpoint_list) {

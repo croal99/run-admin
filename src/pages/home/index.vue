@@ -50,9 +50,6 @@
             <el-form-item label="HTML:">
               <el-input v-model="game_config.welcome.html" placeholder="HTML" type="textarea" :rows="20" style="width: 90%;"></el-input>
             </el-form-item>
-            <!-- <el-form-item label="CSS:">
-              <el-input v-model="game_config.welcome.css" placeholder="CSS" type="textarea" :rows="8" style="width: 90%;"></el-input>
-            </el-form-item> -->
           </el-form>
         </el-tab-pane>
 
