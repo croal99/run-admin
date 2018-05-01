@@ -19,12 +19,12 @@
         <el-table-column prop="question" label="题库" width="80">
         </el-table-column>
         <el-table-column label="显示" width="80">
-          <template scope="props">
+          <template slot-scope="props">
             <span v-if="props.row.show">是</span>
           </template>
         </el-table-column>        
         <el-table-column label="操作" width="220">
-          <template scope="props">
+          <template slot-scope="props">
             <router-link :to="{name: 'checkpointEdit', params: {id: props.row.id}}" tag="span">
               <el-button type="success" size="mini" icon="edit">编辑</el-button>
             </router-link>

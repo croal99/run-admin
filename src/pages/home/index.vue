@@ -37,7 +37,7 @@
             <el-table-column prop="mtime" label="时间">
             </el-table-column>
             <el-table-column label="操作" width="200">
-              <template scope="props">
+              <template slot-scope="props">
                 <el-button type="success" size="mini" icon="edit" @click="load_config(props.row)">加载</el-button>
                 <!-- <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row)">删除</el-button> -->
               </template>

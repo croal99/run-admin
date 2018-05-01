@@ -23,7 +23,7 @@
         <el-table-column prop="url" label="URL">
         </el-table-column>        
         <el-table-column label="操作" width="90">
-          <template scope="props">
+          <template slot-scope="props">
             <el-button type="danger" size="mini" icon="delete" @click="delete_data(props.row.fullname)">删除</el-button>
           </template>
         </el-table-column>

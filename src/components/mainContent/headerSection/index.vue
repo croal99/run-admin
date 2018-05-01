@@ -1,7 +1,7 @@
 <template>
   <div class="header-section">
     <div class="search">
-      <search @search="submit_search"></search>
+      <search @search="submit_search" ></search>
     </div>
     <menu-right></menu-right>
   </div>

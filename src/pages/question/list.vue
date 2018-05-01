@@ -17,14 +17,14 @@
         <el-table-column prop="name" label="name" width="150">
         </el-table-column>
         <el-table-column label="type" width="120">
-          <template scope="props">
+          <template slot-scope="props">
             {{type_name[props.row.type]}}
           </template>
         </el-table-column>
         <el-table-column prop="content" label="content">
         </el-table-column>
         <el-table-column label="操作" width="180">
-          <template scope="props">
+          <template slot-scope="props">
             <router-link :to="{name: 'questionEdit', params: {id: props.row.id}}" tag="span">
               <el-button type="success" size="mini" icon="edit">编辑</el-button>
             </router-link>
