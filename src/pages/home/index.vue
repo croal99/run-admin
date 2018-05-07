@@ -104,6 +104,10 @@ export default {
           label: "望江楼"
         },
         {
+          value: "shzxt01",
+          label: "守护者信条"
+        },
+        {
           value: "debug",
           label: "测试专用"
         }
