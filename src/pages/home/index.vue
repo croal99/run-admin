@@ -108,6 +108,10 @@ export default {
           label: "守护者信条"
         },
         {
+          value: "xy01",
+          label: "校园答题"
+        },
+        {
           value: "debug",
           label: "测试专用"
         }
