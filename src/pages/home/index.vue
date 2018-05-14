@@ -100,8 +100,16 @@ export default {
           label: "洛帶建字庫"
         },
         {
+          value: "ldjzk",
+          label: "洛帶建字庫正式版"
+        },
+        {
           value: "wjl01",
           label: "望江楼"
+        },
+        {
+          value: "wjlxg",
+          label: "望江楼正式版"
         },
         {
           value: "shzxt01",

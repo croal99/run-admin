@@ -84,11 +84,22 @@ export default {
         {
           title: "玩家管理",
           path: "/player",
-          icon: "fa-bar-chart-o",
+          icon: "fa-child",
           child: [
             {
               title: "玩家列表",
               path: "/player/list"
+            }
+          ]
+        },
+        {
+          title: "口令",
+          path: "/passphrase",
+          icon: "fa-flickr",
+          child: [
+            {
+              title: "口令列表",
+              path: "/passphrase/list"
             }
           ]
         }
