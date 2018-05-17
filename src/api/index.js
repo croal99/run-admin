@@ -14,13 +14,15 @@ import * as api_table from './table'
 import * as api_user from './user'
 import * as api_game_config from './game_config'
 import * as api_media from './media'
+import * as api_passphrase from './passphrase'
 
 const apiObj = {
   api_file,
   api_table,
   api_user,
   api_game_config,
-  api_media
+  api_media,
+  api_passphrase,
 }
 
 const install = function (Vue) {

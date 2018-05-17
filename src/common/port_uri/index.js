@@ -15,6 +15,7 @@ import * as port_table from './table'
 import * as port_file from './file'
 import * as port_game_config from './game_config'
 import * as port_media from './media'
+import * as port_passphrase from './passphrase'
 
 export {
   port_code,
@@ -23,4 +24,5 @@ export {
   port_file,
   port_game_config,
   port_media,
+  port_passphrase,
 }

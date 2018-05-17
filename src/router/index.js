@@ -60,6 +60,10 @@ import audioEditComponent from 'pages/media/audio/edit'
 import playerListComponent from 'pages/player/list'
 import playerRecordComponent from 'pages/player/record'
 
+// 口令管理
+import passphraseListComponent from 'pages/passphrase/list'
+import passphraseEditComponent from 'pages/passphrase/edit'
+
 Vue.use(VueRouter)
 
 //使用AMD方式加载
@@ -184,6 +188,24 @@ const routes = [{
       component: audioEditComponent,
       meta: {
         title: "音频編輯",
+        auth: true
+      }
+    },
+    {
+      path: '/passphrase/list',
+      name: 'passphraseList',
+      component: passphraseListComponent,
+      meta: {
+        title: "口令列表",
+        auth: true
+      }
+    },
+    {
+      path: '/passphrase/edit',
+      name: 'passphraseEdit',
+      component: passphraseEditComponent,
+      meta: {
+        title: "编辑口令",
         auth: true
       }
     },

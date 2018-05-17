@@ -100,9 +100,9 @@ export default {
             {
               title: "口令列表",
               path: "/passphrase/list"
-            }
+            },
           ]
-        }
+        },
       ]
     };
   }
