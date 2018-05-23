@@ -21,47 +21,23 @@
           width="55">
         </el-table-column>
         <el-table-column
-          prop="id"
-          label="id"
-          width="80">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="姓名"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="sex"
-          label="性别"
-          width="100">
-          <template slot-scope="props">
-            <span v-text="props.row.sex == 1 ? '男' : '女'"></span>
+          prop="filename"
+          label="filename"
+          width="180">
+          <template slot-scope="scope">
+            <el-button v-if="scope.row.isdir" size="mini" @click="get_passphrase(scope.row.fullname)">{{scope.row.filename}}</el-button>
+            <p v-else>{{scope.row.filename}}</p>
           </template>
         </el-table-column>
         <el-table-column
-          prop="age"
-          label="年龄"
-          width="100">
-        </el-table-column>
-        <el-table-column
-          prop="birthday"
-          label="生日"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="zip"
-          label="邮编"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="地址">
+          prop="fullname"
+          label="fullname">
         </el-table-column>
         <el-table-column
           label="操作"
           width="180">
           <template slot-scope="props">
-            <router-link :to="{name: 'tableUpdate', params: {filename: props.row.filename}}" tag="span">
+            <router-link :to="{name: 'passphraseEdit', params: {filename: props.row.filename}}" tag="span">
               <el-button type="info" size="small" icon="edit">修改</el-button>
             </router-link>
             <el-button type="danger" size="small" icon="delete" @click="delete_data(props.row)">删除</el-button>
@@ -128,17 +104,26 @@
     // 获取口令数据
     get_passphrase() {
       this.load_data = true;
+      if (this.$store.state.game_code == '') {
+          this.$notify.info({
+            title: "提示",
+            message: "请先选择游戏！"
+          });
+          this.load_data = false;
+          return;
+      }
       this.$fetch.api_passphrase
-        .passphrase_list('auth/'+this.$store.state.game_code)
+        .passphrase_list(this.$store.state.game_code)
         .then(({ data }) => {
           this.$message.success("加载成功");
           this.table_data = data;
-          console.log(table_data[0]);
+          this.load_data = false;
+          console.log(data);
         })
         .catch(() => {
           this.$notify.info({
             title: "提示",
-            message: "在顶部选择游戏"
+            message: "参数错误！"
           });
         });
     },
