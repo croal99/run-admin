@@ -15,7 +15,7 @@
         <el-table-column label="image" width="240" height="120">
           <template slot-scope="scope">
             <el-button v-if="scope.row.isdir" size="mini" @click="get_picture_list(scope.row.fullname)">{{scope.row.filename}}</el-button>
-            <img v-else :src="scope.row.url" width="240">
+            <img v-else :src="scope.row.url" width="auto" height="60">
           </template>
         </el-table-column>
         <el-table-column prop="mtime" label="时间" width="170">
