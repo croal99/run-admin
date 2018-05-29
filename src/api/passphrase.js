@@ -21,11 +21,19 @@ export function passphrase_list(game_code) {
 }
 
 
-export function delete_passphrase(path) {
-  let data;
+export function edit_passphrase(data) {
   return fetch({
-    url: port_passphrase.delete_passphrase+'?path='+path,
-    method: 'get',
+    url: port_passphrase.edit_passphrase,
+    method: 'post',
+    data
+  })
+}
+
+
+export function delete_passphrase(data) {
+  return fetch({
+    url: port_passphrase.delete_passphrase,
+    method: 'post',
     data
   })
 }
