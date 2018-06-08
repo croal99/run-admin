@@ -120,6 +120,10 @@ export default {
           label: "校园答题"
         },
         {
+          value: "xy02",
+          label: "校园恐爆答题"
+        },
+        {
           value: "debug",
           label: "测试专用"
         }
