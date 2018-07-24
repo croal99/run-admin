@@ -1,5 +1,10 @@
 <template>
   <div class="panel">
+        <el-dialog title="二維碼" :visible.sync="showFlag">
+          <div style="text-align: center" >
+            <canvas id="qrcode">二维码位置</canvas>
+          </div>
+        </el-dialog>
     <panel-title :title="$route.meta.title"></panel-title>
     <div class="panel-body">
       <el-form :inline="true">
@@ -14,6 +19,18 @@
         </el-form-item>
         <el-form-item>
           <el-button type="success" size="small" @click="save_game">保存当前设置</el-button>
+        </el-form-item>
+        <el-form-item>
+          <a :href="ob_link"><el-button type="warning" size="small">ob</el-button></a>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="success" size="small" @click="showFlag = true;qrcode(ob_link)">ob二維碼</el-button>
+        </el-form-item>
+        <el-form-item>
+          <a :href="rank_link"><el-button type="warning" size="small">rank</el-button></a>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="success" size="small" @click="showFlag = true;qrcode(rank_link)">rank二維碼</el-button>
         </el-form-item>
       </el-form>
       <el-tabs type="border-card">
@@ -81,6 +98,7 @@
 
 <script type="text/javascript">
 import { panelTitle } from "components";
+import QRCode from 'qrcode';
 
 export default {
   data() {
@@ -131,16 +149,27 @@ export default {
       config_list: [], // 游戏配置
       game_config: null,
       game_css: '',
-      load_data: false // 请求时的loading效果
+      load_data: false, // 请求时的loading效果
+      showFlag: false,
+      canvas:document.getElementById('qrcode')
     };
   },
   created() {
+    this.qrcode();
     if (this.$store.state.game_code) {
       this.load_data = true;
       this.get_config_list();
     }
   },
-  methods: {
+  methods: {    
+    qrcode (link) {
+        var canvas = document.getElementById('qrcode')
+ 
+        QRCode.toCanvas(canvas, link, function (error) {
+          if (error) console.error(error)
+        })
+    },
+
     // 加载游戏历史
     load_config(config) {
       this.load_data = true;
@@ -242,8 +271,17 @@ export default {
         });
     }
   },
+  computed: {
+      ob_link : function(){
+        return 'https://game.591cms.com/game/ob?game_code='+this.$store.state.game_code;
+      },
+      rank_link : function(){
+        return 'https://game.591cms.com/api3/pre_rank?code='+this.$store.state.game_code;
+      }
+  },
   components: {
-    panelTitle
-  }
+    panelTitle,
+    QRCode: QRCode
+  },
 };
 </script>
