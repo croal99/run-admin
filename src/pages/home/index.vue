@@ -1,10 +1,32 @@
 <template>
   <div class="panel">
-        <el-dialog title="二維碼" :visible.sync="showFlag">
-          <div style="text-align: center" >
-            <canvas id="qrcode">二维码位置</canvas>
-          </div>
-        </el-dialog>
+    <el-dialog title="链接及其二維碼" :visible.sync="showFlag">
+      <el-form :inline="true">
+        <el-form-item>
+          <a :href="game_link"><el-button type="warning" size="small">game</el-button></a>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="success" size="small" @click="showFlag = true;qrcode(game_link)">game二維碼</el-button>
+        </el-form-item>
+        <el-form-item>
+          <a :href="ob_link"><el-button type="warning" size="small">ob</el-button></a>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="success" size="small" @click="showFlag = true;qrcode(ob_link)">ob二維碼</el-button>
+        </el-form-item>
+        <el-form-item>
+          <a :href="rank_link"><el-button type="warning" size="small">rank</el-button></a>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="success" size="small" @click="showFlag = true;qrcode(rank_link)">rank二維碼</el-button>
+        </el-form-item>
+      </el-form>
+      <div style="text-align: center" >
+        <canvas id="qrcode">二维码位置</canvas>
+      </div>
+    </el-dialog>
+    <el-dialog title="新建游戏" :visible.sync="showFlag2">
+    </el-dialog>
     <panel-title :title="$route.meta.title"></panel-title>
     <div class="panel-body">
       <el-form :inline="true">
@@ -21,16 +43,10 @@
           <el-button type="success" size="small" @click="save_game">保存当前设置</el-button>
         </el-form-item>
         <el-form-item>
-          <a :href="ob_link"><el-button type="warning" size="small">ob</el-button></a>
+          <el-button type="primary" size="small" @click="showFlag = true">其他</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="success" size="small" @click="showFlag = true;qrcode(ob_link)">ob二維碼</el-button>
-        </el-form-item>
-        <el-form-item>
-          <a :href="rank_link"><el-button type="warning" size="small">rank</el-button></a>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="success" size="small" @click="showFlag = true;qrcode(rank_link)">rank二維碼</el-button>
+          <el-button type="warning" size="small" @click="showFlag2 = true">新建游戏</el-button>
         </el-form-item>
       </el-form>
       <el-tabs type="border-card">
@@ -151,11 +167,11 @@ export default {
       game_css: '',
       load_data: false, // 请求时的loading效果
       showFlag: false,
+      showFlag2: false,
       canvas:document.getElementById('qrcode')
     };
   },
   created() {
-    this.qrcode();
     if (this.$store.state.game_code) {
       this.load_data = true;
       this.get_config_list();
@@ -277,6 +293,9 @@ export default {
       },
       rank_link : function(){
         return 'https://game.591cms.com/api3/pre_rank?code='+this.$store.state.game_code;
+      },
+      game_link : function(){
+        return 'https://game.591cms.com/play/index.html?'+this.$store.state.game_code;
       }
   },
   components: {
