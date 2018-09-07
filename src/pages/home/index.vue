@@ -1,33 +1,38 @@
 <template>
   <div class="panel">
-    <el-dialog title="链接及其二維碼" :visible.sync="showFlag">
-      <el-form :inline="true">
-        <el-form-item>
-          <a :href="game_link"><el-button type="warning" size="small">game</el-button></a>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="success" size="small" @click="showFlag = true;qrcode(game_link)">game二維碼</el-button>
-        </el-form-item>
-        <el-form-item>
-          <a :href="ob_link"><el-button type="warning" size="small">ob</el-button></a>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="success" size="small" @click="showFlag = true;qrcode(ob_link)">ob二維碼</el-button>
-        </el-form-item>
-        <el-form-item>
-          <a :href="rank_link"><el-button type="warning" size="small">rank</el-button></a>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="success" size="small" @click="showFlag = true;qrcode(rank_link)">rank二維碼</el-button>
-        </el-form-item>
-      </el-form>
+    <el-dialog title="二維碼" :visible.sync="showFlag">
       <div style="text-align: center" >
         <canvas id="qrcode">二维码位置</canvas>
       </div>
     </el-dialog>
     <el-dialog title="新建游戏" :visible.sync="showFlag2">
+      <el-form :model="form" :rules="rules" ref="form" :inline="false">
+        <el-form-item label="游戏名:" prop="name">
+            <el-input type="text" v-model="form.name" placeholder="新游戏的名称"></el-input>
+        </el-form-item>
+        <el-form-item label="code:" prop="code">
+            <el-input type="text" v-model="form.code" placeholder="新游戏的code"></el-input>
+        </el-form-item>
+        <el-button type="submit" @click="onSubmit()">确定</el-button>
+      </el-form>
     </el-dialog>
+    <el-form :inline="true" style="float:right;">
+      <el-form-item>
+        <el-button type="info" @click="showFlag2 = true">新建游戏</el-button>
+      </el-form-item>
+    </el-form>  
     <panel-title :title="$route.meta.title"></panel-title>
+      <el-form :inline="true">
+        <el-form-item>
+          <el-input :value="game_link"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button @click="jsCopy" type="warning" size="small">复制</el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="success" size="small" @click="showFlag = true;qrcode(game_link)">游戏二維碼</el-button>
+        </el-form-item>
+      </el-form>
     <div class="panel-body">
       <el-form :inline="true">
         <el-form-item label="游戏名称">
@@ -43,10 +48,16 @@
           <el-button type="success" size="small" @click="save_game">保存当前设置</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" size="small" @click="showFlag = true">其他</el-button>
+          <a :href="ob_link"><el-button type="warning" size="small">ob</el-button></a>
         </el-form-item>
         <el-form-item>
-          <el-button type="warning" size="small" @click="showFlag2 = true">新建游戏</el-button>
+          <el-button type="success" size="small" @click="showFlag = true;qrcode(ob_link)">ob二維碼</el-button>
+        </el-form-item>
+        <el-form-item>
+          <a :href="rank_link"><el-button type="warning" size="small">rank</el-button></a>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="success" size="small" @click="showFlag = true;qrcode(rank_link)">rank二維碼</el-button>
         </el-form-item>
       </el-form>
       <el-tabs type="border-card">
@@ -118,50 +129,30 @@ import QRCode from 'qrcode';
 
 export default {
   data() {
+    var validateCode = (rule, value, callback) => {
+      for(let game of this.game_list){
+        if(game.value == value){
+          callback(new Error('code已经存在！'));
+        }
+      }
+      callback();
+    };
     return {
       // 游戏列表
-      game_list: [
-        {
-          value: "zjh",
-          label: "志交会"
-        },
-        {
-          value: "1234",
-          label: "消失的宝藏"
-        },
-        {
-          value: "0112",
-          label: "洛帶建字庫"
-        },
-        {
-          value: "ldjzk",
-          label: "洛帶建字庫正式版"
-        },
-        {
-          value: "wjl01",
-          label: "望江楼"
-        },
-        {
-          value: "wjlxg",
-          label: "望江楼正式版"
-        },
-        {
-          value: "shzxt01",
-          label: "守护者信条"
-        },
-        {
-          value: "xy01",
-          label: "校园答题"
-        },
-        {
-          value: "xy02",
-          label: "校园恐爆答题"
-        },
-        {
-          value: "debug",
-          label: "测试专用"
-        }
-      ],
+      game_list: '',
+      form: {
+        name: '',
+        code: '',
+      },
+      rules: {
+        name: [
+          { required: true, message: '请输入游戏名称', trigger: 'blur, change' },
+        ],
+        code: [
+          { required: true, message: '请输入游戏code', trigger: 'blur, change' },
+          { validator: validateCode, trigger: 'blur' }
+        ]
+      },
       config_list: [], // 游戏配置
       game_config: null,
       game_css: '',
@@ -175,7 +166,9 @@ export default {
     if (this.$store.state.game_code) {
       this.load_data = true;
       this.get_config_list();
-    }
+    };
+    
+    this.get_game_code_list()
   },
   methods: {    
     qrcode (link) {
@@ -285,6 +278,64 @@ export default {
             message: "发生错误了"
           });
         });
+    },
+
+    // 获取游戏code列表
+    get_game_code_list(){
+      this.$fetch.api_game_config
+        .get_game_code_list()
+        .then(({ data }) => {
+          this.game_list = data
+      });
+    },
+
+    // 新建游戏提交
+    onSubmit(){
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          this.showFlag2 = false
+          this.$fetch.api_game_config
+            .set_game_code_list({
+              name: this.form.name,
+              code: this.form.code
+            })
+            .then(({ data }) => {
+              this.$message.success("保存成功");
+              this.get_game_code_list()
+            })
+            .catch(() => {
+              this.$notify.info({
+                title: "提示",
+                message: msg
+              })
+            });
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      });
+    },
+    
+    jsCopy(){ 
+      // 创建'虚拟'DOM
+      const input = document.createElement('input')
+      document.body.appendChild(input)
+      input.setAttribute('value', this.game_link)
+      input.select()
+      let ret = document.execCommand('copy')
+      if (ret) {
+        this.$message({
+          type: 'success',
+          message: '复制成功!'
+        })
+      }else{
+        this.$message({
+          type: 'warning',
+          message: '复制失败!强烈要求换一个浏览器！！'
+        })
+      }
+      // 删除'虚拟'DOM
+      document.body.removeChild(input)
     }
   },
   computed: {

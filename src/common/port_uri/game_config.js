@@ -13,5 +13,10 @@ export const get_css = "/game/get_css"
 // 设置CSS配置
 export const set_css = "/game/set_css"
 
+// 获取游戏code列表
+export const get_game_code_list = "/game/get_game_code_list"
+// 设置游戏code列表
+export const set_game_code_list = "/game/set_game_code_list"
+
 // 获取用户列表
 export const get_user_list = "/game/get_user_list"

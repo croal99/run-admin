@@ -73,3 +73,21 @@ export function get_user_list(data) {
     data
   })
 }
+
+// 获取游戏code列表
+export function get_game_code_list(data) {
+  return fetch({
+    url: port_game_config.get_game_code_list,
+    method: 'post',
+    data
+  })
+}
+
+// 设置游戏code列表
+export function set_game_code_list(data) {
+  return fetch({
+    url: port_game_config.set_game_code_list,
+    method: 'post',
+    data
+  })
+}
