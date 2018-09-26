@@ -18,7 +18,7 @@
     </el-dialog>
     <el-form :inline="true" style="float:right;">
       <el-form-item>
-        <el-button type="info" @click="showFlag2 = true">新建游戏</el-button>
+        <el-button type="primary" icon="plus" size="small" @click="showFlag2 = true">新建游戏</el-button>
       </el-form-item>
     </el-form>  
     <panel-title :title="$route.meta.title"></panel-title>
