@@ -22,15 +22,15 @@
       </el-form-item>
     </el-form>  
     <panel-title :title="$route.meta.title"></panel-title>
-      <el-form :inline="true">
+      <el-form :inline="true" style="position:absolute;top:2px;left:120px;">
         <el-form-item>
-          <el-input :value="game_link"></el-input>
+          <el-input :value="game_link" style="width:350px;"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button @click="jsCopy" type="warning" size="small">复制</el-button>
+          <el-button @click="jsCopy" type="default" size="small">复制</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="success" size="small" @click="showFlag = true;qrcode(game_link)">游戏二維碼</el-button>
+          <el-button type="default" size="small" @click="showFlag = true;qrcode(game_link)">游戏二維碼</el-button>
         </el-form-item>
       </el-form>
     <div class="panel-body">
@@ -48,16 +48,16 @@
           <el-button type="success" size="small" @click="save_game">保存当前设置</el-button>
         </el-form-item>
         <el-form-item>
-          <a :href="ob_link"><el-button type="warning" size="small">ob</el-button></a>
+          <a :href="ob_link"><el-button type="default" size="small">OB</el-button></a>
         </el-form-item>
         <el-form-item>
-          <el-button type="success" size="small" @click="showFlag = true;qrcode(ob_link)">ob二維碼</el-button>
+          <el-button type="default" size="small" @click="showFlag = true;qrcode(ob_link)">OB二维码</el-button>
         </el-form-item>
         <el-form-item>
-          <a :href="rank_link"><el-button type="warning" size="small">rank</el-button></a>
+          <a :href="rank_link"><el-button type="default" size="small">RANK</el-button></a>
         </el-form-item>
         <el-form-item>
-          <el-button type="success" size="small" @click="showFlag = true;qrcode(rank_link)">rank二維碼</el-button>
+          <el-button type="default" size="small" @click="showFlag = true;qrcode(rank_link)">RANK二维码</el-button>
         </el-form-item>
       </el-form>
       <el-tabs type="border-card">
