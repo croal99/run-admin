@@ -19,7 +19,7 @@
             <el-input v-model="props.row.sort"></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="name" label="说明" width="150">
+        <el-table-column prop="name" label="说明" width="400">
         </el-table-column>
         <el-table-column label="题目类型" width="120">
           <template slot-scope="props">
