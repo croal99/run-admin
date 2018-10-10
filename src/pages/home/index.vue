@@ -126,7 +126,6 @@
 <script type="text/javascript">
 import { panelTitle } from "components";
 import QRCode from 'qrcode';
-
 export default {
   data() {
     var validateCode = (rule, value, callback) => {

@@ -9,10 +9,15 @@
       </router-link>
     </panel-title>
     <div class="panel-body">
-      <el-table :data="$store.state.checkpoint_list" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
-        <el-table-column type="selection" width="55">
-        </el-table-column>
+      <el-table :data="$store.state.checkpoint_list" :default-sort="{prop: 'sort', order: 'ascending'}" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
+        <!--<el-table-column type="selection" width="55">
+        </el-table-column>-->
         <el-table-column prop="id" label="编号" width="80">
+        </el-table-column>
+        <el-table-column prop="sort" sortable label="sort" width="100">
+          <template slot-scope="props">
+            <el-input v-model="props.row.sort"></el-input>
+          </template>
         </el-table-column>
         <el-table-column prop="memo" label="说明">
         </el-table-column>

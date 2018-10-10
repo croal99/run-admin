@@ -12,6 +12,7 @@ import * as type from 'store/mutations/type'
 import {
   cookieStorage
 } from 'common/storage'
+import { isNullOrUndefined } from 'util';
 
 export default {
   set_game_code(state, code) {
@@ -36,6 +37,9 @@ export default {
     state.checkpoint_list = [];
     for (var key in state.game_config.checkpoint_list) {
       let checkpoint = state.game_config.checkpoint_list[key];
+      if(isNullOrUndefined(checkpoint['sort'])){
+        checkpoint['sort'] = key*10;
+      }
       state.checkpoint_list.push(checkpoint);
     }
 
@@ -43,6 +47,9 @@ export default {
     state.question_list = [];
     for (var key in state.game_config.question_list) {
       let question = state.game_config.question_list[key];
+      if(isNullOrUndefined(question['sort'])){
+        question['sort'] = key*10;
+      }
       state.question_list.push(question);
     }
   },
