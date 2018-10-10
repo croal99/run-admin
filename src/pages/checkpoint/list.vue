@@ -14,7 +14,7 @@
         </el-table-column>-->
         <el-table-column prop="id" label="编号" width="80">
         </el-table-column>
-        <el-table-column prop="sort" sortable label="sort" width="100">
+        <el-table-column prop="sort" sortable label="排序" width="100">
           <template slot-scope="props">
             <el-input v-model="props.row.sort"></el-input>
           </template>

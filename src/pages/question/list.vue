@@ -12,23 +12,23 @@
       <el-table :data="$store.state.question_list" :default-sort="{prop: 'sort', order: 'ascending'}" v-loading="load_data" element-loading-text="拼命加载中" border style="width: 100%;">
         <!-- <el-table-column type="selection" width="55">
         </el-table-column> -->
-        <el-table-column prop="id" label="id" width="70">
+        <el-table-column prop="id" label="编号" width="70">
         </el-table-column>
-        <el-table-column prop="sort" sortable label="sort" width="100">
+        <el-table-column prop="sort" sortable label="排序" width="100">
           <template slot-scope="props">
             <el-input v-model="props.row.sort"></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="name" label="name" width="150">
+        <el-table-column prop="name" label="说明" width="150">
         </el-table-column>
-        <el-table-column label="type" width="120">
+        <el-table-column label="题目类型" width="120">
           <template slot-scope="props">
             {{type_name[props.row.type]}}
           </template>
         </el-table-column>
-        <el-table-column prop="true_id" label="true_id">
+        <el-table-column prop="true_id" label="正确指向">
         </el-table-column>
-        <el-table-column prop="false_id" label="false_id">
+        <el-table-column prop="false_id" label="错误指向">
         </el-table-column>
         <el-table-column label="操作" width="180">
           <template slot-scope="props">
