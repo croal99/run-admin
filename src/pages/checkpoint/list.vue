@@ -27,7 +27,12 @@
           <template slot-scope="props">
             <span v-if="props.row.show">是</span>
           </template>
-        </el-table-column>        
+        </el-table-column>    
+        <el-table-column label="状态" width="100">
+          <template slot-scope="props">
+            {{status_name[props.row.status]}}
+          </template>
+        </el-table-column>  
         <el-table-column label="操作" width="220">
           <template slot-scope="props">
             <router-link :to="{name: 'checkpointEdit', params: {id: props.row.id}}" tag="span">
@@ -65,6 +70,14 @@ export default {
     return {
       //请求时的loading效果
       load_data: false,
+      // 类型定义
+      status_name: [
+        "未开启",
+        "选中目标",
+        "到达位置",
+        "完成（成功）",
+        "完成（失败）",
+      ],
       //批量选择数组
       batch_select: []
     };
