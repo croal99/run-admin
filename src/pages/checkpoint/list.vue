@@ -32,7 +32,12 @@
           <template slot-scope="props">
             {{status_name[props.row.status]}}
           </template>
-        </el-table-column>  
+        </el-table-column>
+        <el-table-column label="触发方式" width="80">
+          <template slot-scope="props">
+            {{method_name[props.row.method]}}
+          </template>
+        </el-table-column>      
         <el-table-column label="操作" width="220">
           <template slot-scope="props">
             <router-link :to="{name: 'checkpointEdit', params: {id: props.row.id}}" tag="span">
@@ -77,6 +82,11 @@ export default {
         "到达位置",
         "完成（成功）",
         "完成（失败）",
+      ],
+      method_name: [
+        '系统设置',
+        '摇一摇',
+        '扫一扫'
       ],
       //批量选择数组
       batch_select: []
