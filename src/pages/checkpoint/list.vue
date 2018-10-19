@@ -33,7 +33,7 @@
             {{status_name[props.row.status]}}
           </template>
         </el-table-column>
-        <el-table-column label="触发方式" width="80">
+        <el-table-column label="触发方式" width="100">
           <template slot-scope="props">
             {{method_name[props.row.method]}}
           </template>
