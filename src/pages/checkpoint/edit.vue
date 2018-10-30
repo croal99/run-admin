@@ -44,7 +44,7 @@
             <el-form-item label="题目(question):" prop="question">
               <el-select v-model="checkpoint.question" placeholder="题目" style="width: 250px;">
                 <el-option label="(0)-未设置" value="0"></el-option>
-                <el-option v-for="question in $store.state.question_list" :key="question.id" :label="'('+question.id+')-'+question.name"
+                <el-option v-for="question in $store.state.question_list" :key="question.sort" :label="'('+question.id+')-'+question.name"
                   :value="question.id">
                 </el-option>
               </el-select>

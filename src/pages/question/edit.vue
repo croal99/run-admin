@@ -93,6 +93,10 @@ export default {
           label: "任务书"
         },
         {
+          value: "10",
+          label: "语音题"
+        },
+        {
           value: "11",
           label: "填空题"
         },
