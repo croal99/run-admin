@@ -117,6 +117,16 @@
           </el-form>
         </el-tab-pane>
         
+        <el-tab-pane label="media">
+          <el-form v-if="game_config" label-width="150px">
+            <el-form-item label="全局背景音乐:" prop="audio">
+              <el-input v-model="game_config.audio" placeholder="audio" style="width: 400px;"></el-input>
+              <i @click="play_audio" :class="{'fa-spin': media.audio}" class="fa fa-play-circle fa-2x fa-fw" style="vertical-align:middle;"></i>
+              <audio :src="game_config.audio" controls="controls" preload id="music1" hidden></audio>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+        
       </el-tabs>
 
     </div>
@@ -158,7 +168,10 @@ export default {
       load_data: false, // 请求时的loading效果
       showFlag: false,
       showFlag2: false,
-      canvas:document.getElementById('qrcode')
+      canvas:document.getElementById('qrcode'),
+      media: {
+        audio:false,
+      }
     };
   },
   created() {
@@ -335,6 +348,19 @@ export default {
       }
       // 删除'虚拟'DOM
       document.body.removeChild(input)
+    },
+
+    play_audio(){
+      var audio = document.getElementById('music1'); 
+      if(audio!==null){             
+          //检测播放是否已暂停.audio.paused 在播放器播放时返回false.
+          this.media.audio = audio.paused;
+        if(audio.paused){                 
+          audio.play();//audio.play();// 这个就是播放  
+        }else{
+          audio.pause();// 这个就是暂停
+        }
+      }
     }
   },
   computed: {
