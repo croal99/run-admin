@@ -58,6 +58,9 @@
             <el-form-item label="误差范围（range）:" prop="range">
               <el-input v-model="checkpoint.range" placeholder="误差范围" style="width: 250px;"></el-input>
             </el-form-item>
+            <el-form-item label="显示范围（show_range）:" prop="show_range">
+              <el-input v-model="checkpoint.show_range" placeholder="显示范围" style="width: 250px;"></el-input>
+            </el-form-item>
             <el-form-item label="显示css（css）:" prop="css">
               <el-input v-model="checkpoint.css" placeholder="css名称" style="width: 250px;"></el-input>
             </el-form-item>

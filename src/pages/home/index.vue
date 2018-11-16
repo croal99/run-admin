@@ -45,19 +45,25 @@
           <el-button type="primary" size="small" @click="set_game">设置</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="success" size="small" @click="save_game">保存当前设置</el-button>
+          <el-button type="success" size="small" @click="save_game">保存</el-button>
         </el-form-item>
         <el-form-item>
-          <a :href="ob_link"><el-button type="default" size="small">OB</el-button></a>
+          <a :href="ob_link"><el-button type="default" size="small" style="margin-left:30px;">OB</el-button></a>
         </el-form-item>
         <el-form-item>
-          <el-button type="default" size="small" @click="showFlag = true;qrcode(ob_link)">OB二维码</el-button>
+          <el-button type="default" size="small" @click="showFlag = true;qrcode(ob_link)">OB码</el-button>
         </el-form-item>
         <el-form-item>
           <a :href="rank_link"><el-button type="default" size="small">RANK</el-button></a>
         </el-form-item>
         <el-form-item>
-          <el-button type="default" size="small" @click="showFlag = true;qrcode(rank_link)">RANK二维码</el-button>
+          <el-button type="default" size="small" @click="showFlag = true;qrcode(rank_link)">RANK码</el-button>
+        </el-form-item>
+        <el-form-item>
+          <a :href="news_link"><el-button type="default" size="small">消息</el-button></a>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="default" size="small" @click="showFlag = true;qrcode(news_link)">消息码</el-button>
         </el-form-item>
       </el-form>
       <el-tabs type="border-card">
@@ -372,6 +378,9 @@ export default {
       },
       game_link : function(){
         return 'https://game.591cms.com/play/index.html?'+this.$store.state.game_code;
+      },
+      news_link : function(){
+        return 'https://game.591cms.com/game/news?game_code='+this.$store.state.game_code;
       }
   },
   components: {

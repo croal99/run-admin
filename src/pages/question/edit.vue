@@ -49,6 +49,9 @@
             <el-form-item label="标签（tag）:" prop="tag">
               <el-input v-model="question.tag" placeholder="题目标签" style="width: 100%;"></el-input>
             </el-form-item>
+            <el-form-item label="音效（voice）:" prop="voice">
+              <el-input v-model="question.voice" placeholder="题目音效" style="width: 100%;"></el-input>
+            </el-form-item>
             <el-form-item>
               <el-button @click="$router.back()">返回</el-button>
             </el-form-item>
@@ -133,6 +136,7 @@ export default {
         true_id: "0",
         false_id: "0",
         tag:"",
+        voice:"",
       };
       this.$store.commit('add_question', question);
       this.get_data(question.id);
