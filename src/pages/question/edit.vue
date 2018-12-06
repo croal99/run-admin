@@ -23,6 +23,9 @@
             <el-form-item label="选项（items）:" prop="items">
               <el-input v-model="question.items" placeholder="题目选项" type="textarea" :rows="4" style="width: 100%;"></el-input>
             </el-form-item>
+            <el-form-item label="选项显示css（css）:" prop="css">
+              <el-input v-model="question.css" placeholder="css名称" style="width: 250px;"></el-input>
+            </el-form-item>
             <el-form-item label="答案（answer）:" prop="answer">
               <el-input v-model="question.answer" placeholder="题目答案" style="width: 100%;"></el-input>
             </el-form-item>
