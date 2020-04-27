@@ -1,8 +1,8 @@
 {
-  "name": "vue-element-admin",
-  "version": "1.0.0",
-  "description": "A vue-element-admin project",
-  "author": "zzmhot <zzmhot@163.com>",
+  "name": "fengxun-admin",
+  "version": "3.1.0",
+  "description": "A fengxun-admin project",
+  "author": "zcheng <cdzcheng@sina.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
