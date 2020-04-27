@@ -10,7 +10,7 @@ git clone https://github.com/croal99/run-admin.git
 通过`npm`安装本地服务第三方依赖模块(需要已安装[Node.js](https://nodejs.org/))
 
 ```
-npm install
+npm install --registry=https://registry.npm.taobao.org
 ```
 启动服务: (http://localhost:3000)
 
@@ -135,7 +135,7 @@ npm run build
 |12 | 晋级书 | 名称|说明|关卡列表（,分割）|||不显示
 
 # 道具分类
-|编码| 说明 | 
+|编码| 说明 |
 |---|---|
 |tool |  功能性道具
 |treasure | 宝藏类道具
@@ -149,6 +149,4 @@ npm run build
 |x | 重置关卡 | 重置关卡答题记录（依然为到达状态） | x2018
 |* | 获取道具 | 题库编号（该题库类型选道具） | *5001
 |e | 结束游戏 | 无 | e
-
-![image](https://raw.githubusercontent.com/zzmhot/vue-admin/images/images_1.jpg)
 
