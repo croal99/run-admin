@@ -5,12 +5,12 @@
 ***
 项目地址: (`git clone`)
 ```shell
-git clone https://github.com/croal99/run-admin.git
+git clone https://gitee.com/bluenet99/run-admin.git
 ```
 通过`npm`安装本地服务第三方依赖模块(需要已安装[Node.js](https://nodejs.org/))
 
 ```
-npm install --registry=https://registry.npm.taobao.org
+cnpm install
 ```
 启动服务: (http://localhost:3000)
 
@@ -89,13 +89,15 @@ npm run build
 |id|int|编号|
 |status|int|关卡状态 <br> 0--未开启 <br> 1--选中目标 <br> 2--到达位置 <br> 3--完成（成功） 4--完成（失败）|
 |show|bool|是否显示（晋级书控制该字段）|
+|*start_time|int|游戏开始后按分钟自动触发 （默认：0 -- 不触发）|
+|*start_count|int|游戏开始后按完成关卡数量自动触发 （默认：0 -- 不触发）|
 |code|char|编码（用于扫一扫，需要保证不重复）|
 |memo|char|说明（内部使用）|
 |name|char|名称（用于任务列表页面显示）|
 |content|char|关卡内容（HTML，进入线索显示页面后渲染）|
 |lng|char|经度|
 |lat|char|纬度|
-|range|int|误差范围（0-使用系统配置  >0单独配置）|
+|range|int|误差范围<br> 0 -- 使用系统配置 <br> >0 --- 单独配置|
 |method|int|触发方法 <br> 0--摇一摇 <br> 1--扫一扫|
 |image0|char|状态图|
 |image1|char|状态图|
@@ -103,7 +105,7 @@ npm run build
 |image3|char|状态图|
 |image4|char|状态图|
 |css|char|css属性|
-|question|int|题目编号|
+|question|int|题目编号（默认题目）|
 
 # 题目（Question）
 |名称| 类型 | 说明
